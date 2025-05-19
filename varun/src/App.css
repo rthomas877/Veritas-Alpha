@@ -1,0 +1,334 @@
+.App {
+  text-align: center;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Hepta Slab', serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px;
+  background-color: #004226ff;
+}
+
+.logo img {
+  height: 50px;
+  width: auto;
+}
+
+/* Navigation Links */
+.nav {
+  display: flex;
+  gap: 7px;
+  font-family: 'Hepta Slab', serif;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: background 0.3s;
+}
+
+.nav a:hover {
+  background-color: #fff;
+  color: #004226ff;
+  border-radius: 20px;
+}
+
+/* Hamburger Menu (Hidden by Default) */
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  background: none;
+  color: white;
+  border: none;
+  border-color: white;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #004226ff;
+    border: 2px solid #f5f5dc;
+    border-width: 2px;
+    padding: 10px;
+    border-radius: 15px;
+    z-index: 1000; /* Ensures header stays above other content */
+  }
+
+  .nav hover {
+    background: #fff;
+    color: #004226ff;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+}
+
+.chartDashboard {
+  display: flex;
+  gap: 15px; /* Space between boxes */
+  justify-content: center; /* Centers boxes horizontally */
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Prevents wrapping */
+  justify-content: flex-start; /* Align tiles to the left */
+  scroll-snap-type: x mandatory; /* Smooth snapping while scrolling */
+  padding: 20px;
+  background-color: #f5f5dc;
+}
+
+.data-box-green {
+  flex: 1 1 auto; /* Prevents shrinking/expanding */
+  width: 195px; /* Set fixed width */
+  min-width: 170px; /* Prevents boxes from becoming too small */
+  max-width: 3000px; /* Prevents excessive growth */
+  height: 95px; /* Set fixed height */
+  min-height: 95px;
+  max-height: 95px;  
+  padding: 7px;
+  border: 2px solid #004226ff;
+  border-radius: 3px;
+  background-color: #004226ff;
+  font-family: 'Arial', sans-serif; 
+  color: #fff;
+  display: flex;
+  flex-direction: column; /* Stack elements by default */
+}
+
+.data-box-grey {
+  flex: 1 1 auto; /* Prevents shrinking/expanding */
+  width: 195px; /* Set fixed width */
+  min-width: 170px; /* Prevents boxes from becoming too small */
+  max-width: 3000px; /* Prevents excessive growth */
+  height: 95px; /* Set fixed height */
+  min-height: 95px;
+  max-height: 95px;  
+  padding: 7px;
+  border: 2px solid #434c50;
+  border-radius: 3px;
+  background-color: #434c50;
+  font-family: 'Arial', sans-serif; 
+  color: #fff;
+  display: flex;
+  flex-direction: column; /* Stack elements by default */
+}
+
+.data-box-red {
+  flex: 1 1 auto; /* Prevents shrinking/expanding */
+  width: 195px; /* Set fixed width */
+  min-width: 170px; /* Prevents boxes from becoming too small */
+  max-width: 3000px; /* Prevents excessive growth */
+  height: 95px; /* Set fixed height */
+  min-height: 95px;
+  max-height: 95px;  
+  padding: 7px;
+  border: 2px solid #b22222;
+  border-radius: 3px;
+  background-color: #b22222;
+  font-family: 'Arial', sans-serif; 
+  color: #fff;
+  display: flex;
+  flex-direction: column; /* Stack elements by default */
+}
+
+.ticker-container {
+  display: flex;
+  justify-content: space-between; /* Push elements to opposite sides */
+}
+
+.ticker {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.direction-container {
+  display: flex;
+  justify-content: space-between; /* Push elements to opposite sides */
+}
+
+.direction {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.direction-sub {
+  display: flex;
+  font-size: 17px;
+  justify-content: space-between; /* Push elements to opposite sides */
+}
+
+.x {
+  font-weight: 100; 
+  font-style: italic;
+}
+
+.updated-container {
+  margin-top: -16px;
+  font-size: x-small;
+}
+
+
+.break {
+  border: none;      
+  height: 25px;        
+  background-color: #004226ff;
+  width: 100%;       
+  margin: 0px;     
+}
+
+.mainSearchBar {
+  background-color: #f5f5dc;
+  text-align: center;
+  color: #004226ff;
+}
+
+.msbHeader {
+  font-family: 'Outfit', sans-serif; 
+  font-weight: bold;
+  font-size: 5.5vw;
+}
+
+.msbText1 {
+  font-family: 'Outfit', sans-serif; 
+  font-weight: bold;
+  font-size:2.5vw;
+}
+
+
+.msbText {
+  width: 30vw;
+  border: 3px solid;
+  text-align: center;
+  border-color: #004226ff;
+  border-radius: 5px;
+  height: 5vh;
+  align-content: center;
+  color: #004226ff;
+  background-color: #f5f5dc;
+  font-size: 1.5vw;
+}
+
+.msbText:focus {
+  border: 3px solid;
+  border-color: #004226ff;
+  border-radius: 5px;
+  outline: none;
+}
+
+.msbText::placeholder {
+  text-align: center;
+  color: #004226ff;
+}
+
+.padding {
+  height: 20vw;
+}
+
+.footer1 {
+  border: 2px solid #004226ff;
+  background-color: #004226ff;
+  height: auto;
+  text-align: center;
+  font-size: 1.25vw;
+  padding: 1vw 0; /*Combine top and bottom padding*/
+  color: white;
+}
+
+.Bio {
+  display: flex;
+  align-items: center;
+  font-family: 'Outfit', sans-serif;
+  padding: 2.5vw;
+  background-color: #f5f5dc;
+  color: #004226ff;
+}
+
+.BioPhoto {
+  border-radius: 20px;
+  width: 25vw; 
+  margin-right: 20px;
+}
+
+.CenterTag {
+  text-align: center;
+  font-size: 5vw;
+}
+
+.DescriptionBio {
+  text-align: center;
+  font-size: 2.25vw;
+}
+
+.BrandLogo {
+  margin: 0 auto;
+  width: 8vw; 
+  padding: 1vw;
+
+}
+
+.brandImages {
+  display: flex;
+  justify-content: center; /* centers the whole row */
+  align-items: center;   
+}
