@@ -1,10 +1,10 @@
 function Bio() {
     return (
         <div className="Bio">
-            <img src="/RyanBio1.jpg" alt="BioPhoto" className="BioPhoto" />
+            <img src="/RyanBio.jpg" alt="BioPhoto" className="BioPhoto" />
             <div className="textBio">
                 <h1 className="CenterTag">
-                    About 
+                    About
                 </h1>
                 <h2 className="DescriptionBio">
                     My name is Ryan Thomas and I'm a Computer Science student at the University of Maryland, driven by a passion for both finance and technology. I built Veritas Alpha to take a deep dive into stock analysis, reveal market trends, and blend data-driven insights with smart investing. Whether you're looking to find new opportunities or sharpen your strategy, I hope you find something valuable!

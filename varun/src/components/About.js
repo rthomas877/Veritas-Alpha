@@ -1,7 +1,7 @@
 import Header from './Header';
-import ChartDashboard from './ChartDashboard';
+// import ChartDashboard from './ChartDashboard';
 import Footer from './Footer';
-import Break from '../Break';
+// import Break from '../Break';
 import Bio from './Bio';
 import React, { useEffect } from 'react';
 
@@ -15,8 +15,8 @@ function About() {
   return (
     <> 
       <Header />
-      <ChartDashboard />
-      <Break />
+      {/* <ChartDashboard />
+      <Break /> */}
       <Bio />
       <Footer />
     </>
