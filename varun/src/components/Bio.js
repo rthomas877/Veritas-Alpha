@@ -1,7 +1,7 @@
 function Bio() {
     return (
         <div className="Bio">
-            <img src="/RyanBio.jpg" alt="BioPhoto" className="BioPhoto" />
+            <img src="/RyanBio1.jpg" alt="BioPhoto" className="BioPhoto" />
             <div className="textBio">
                 <h1 className="CenterTag">
                     About
