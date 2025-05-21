@@ -295,6 +295,10 @@ body {
   color: white;
 }
 
+.Yahoo {
+  height: 1.25vw;
+}
+
 .Bio {
   display: flex;
   align-items: center;
