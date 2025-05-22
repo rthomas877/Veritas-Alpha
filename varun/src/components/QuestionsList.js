@@ -4,7 +4,7 @@ function QuestionList() {
             <h1 className="FAQTitle">FAQs</h1>
             <h2 className="FAQCategory">General Questions:</h2>
             <ol className="FAQQuestions">
-                <li>What is a stock market?</li>
+                <li>What is the stock market?</li>
                 <h3 className="FAQAnswer">The stock market is a platform where investors can buy and sell shares of publicly traded companies.</h3>
                 <li>How do I get started with investing?</li>
                 <h3 className="FAQAnswer">You'll need to open a brokerage account, fund it, and research stocks before making any investments.</h3>
