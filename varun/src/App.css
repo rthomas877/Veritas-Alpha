@@ -336,3 +336,35 @@ body {
   justify-content: center; /* centers the whole row */
   align-items: center;   
 }
+
+.faqList {
+  background-color: #f5f5dc;
+  padding: 4.5vw;
+  padding-left: 11.5vw;
+  padding-right: 11.5vw;
+  font-family: 'Outfit', sans-serif;
+  color: #004226ff;
+}
+
+.FAQTitle {
+  font-size: 3.75vw;
+}
+
+.FAQCategory {
+  font-size: 2.5vw;
+}
+
+.FAQQuestions {
+  padding-left: 4vw;
+  font-size: 2vw;
+}
+
+.FAQAnswer {
+  font-size: 1.75vw;
+}
+
+.breakLine {
+  background-color: #004226ff;
+  height: 400px;
+  
+}
