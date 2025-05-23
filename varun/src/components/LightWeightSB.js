@@ -1,34 +1,33 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
-function MainSearchBar() {
+function LightWeightSB() {
 
     const [query, setQuery] = useState('');
+    // const [inputValue, setInputValue] = useState('');
 
     const navigate = useNavigate();
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-          if (query !== "") {
-            navigate(`/stock?q=${encodeURIComponent(query)}`);
-          }
+            if (query !== "") {
+                navigate(`/stock?q=${encodeURIComponent(query.trim())}`);
+                setQuery("");
+            }
         }
       };
     
       const handleSearch = (e) => {
         if (query !== "") {
-          navigate(`/stock?q=${encodeURIComponent(query)}`);
+            navigate(`/stock?q=${encodeURIComponent(query.trim())}`);
+            setQuery("");
         }
       };
 
     return (
-        <div className="mainSearchBar">
-        <h1 className="msbHeader">Financial data at your fingertips</h1>
-        <h1 className="msbText1">Track thousands of companies all in one place</h1>
-        <div>
+        <div className='lightSearchBox'>
           <input
-            className="msbText"
+            className="msbTextA"
             type="text"
             placeholder="Enter a ticker symbol (e.g., AAPL)" 
             value={query}
@@ -37,12 +36,11 @@ function MainSearchBar() {
           />
           <button
               onClick={handleSearch}
-              className="searchButton">
+              className="searchButtonA">
               Search
           </button>
         </div>
-      </div>
     );
 }
 
-export default MainSearchBar;
+export default LightWeightSB;

@@ -36,10 +36,12 @@ function Header() {
             </button>
             {/* Navigation Links */}
             <nav className={`nav ${menuOpen ? "open" : ""}`}>
+                <Link to="/stock">TESTPAGE</Link>
                 <Link to="/watchlist">Watchlist</Link>
+                <Link to="/learn">Learn</Link>
                 <Link to="/about">About</Link>
-                <Link to="/login">Login/Sign-up</Link>
                 <Link to="/faq">FAQs</Link>
+                <Link to="/login">Login/Sign-up</Link>
             </nav>
         </header>
     );
