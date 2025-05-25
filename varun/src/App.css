@@ -138,6 +138,10 @@ body {
   background-color: #f5f5dc;
 }
 
+.fillerSpace {
+  padding: 20px;
+}
+
 .data-box-green {
   flex: 1 1 auto; /* Prevents shrinking/expanding */
   width: 195px; /* Set fixed width */

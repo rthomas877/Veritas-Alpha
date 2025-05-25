@@ -24,7 +24,7 @@ function useStockData(ticker) {
 
     fetchData(); // fetch immediately on mount
 
-    const interval = setInterval(fetchData, 60000); // fetch every 60 seconds
+    const interval = setInterval(fetchData, 90000); // fetch every 90 seconds
 
     return () => clearInterval(interval); // cleanup on unmount
   }, [ticker]);

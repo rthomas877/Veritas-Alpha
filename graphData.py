@@ -16,7 +16,7 @@ def get_graphData():
 
     try:
         ticker = yf.Ticker(symbol)
-        hist = ticker.history(period="3mo")
+        hist = ticker.history(period="1d")
 
         # Convert datetime index to string dates
         dates = hist.index.strftime('%Y-%m-%d').tolist()

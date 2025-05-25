@@ -38,10 +38,12 @@ function GetGraphData({ ticker }) {
           setError(null);
         } else {
           setLoading(false);
+          setSymbol(ticker || '');
           setError(data.error || 'Failed to fetch data');
         }
       } catch (error) {
         setLoading(false);
+        setSymbol(ticker || '');
         setError(error.message);
       } finally {
         setLoading(false);

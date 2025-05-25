@@ -37,7 +37,7 @@ function StockScreen() {
               {longName} ({symbol}:{exchangeName}) - ${price !== null ? price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2}) : ""}
             </>
           ) : (
-            "No results for " + query
+            "No results for " + symbol
           )}      
         </h2>
         <h2 className={(price > prevClose) ? 'stockSubtitle' : (price < prevClose) ? 'stockSubtitleR' : 'stockSubtitleGray'}>
@@ -45,7 +45,7 @@ function StockScreen() {
             <>
               {price > prevClose ? '+' : ''}
               {(price - prevClose).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}&nbsp;
-              ({((price / prevClose)).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%)&nbsp;
+              ({(((price - prevClose) / prevClose) * 100).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%)&nbsp;
               {price > prevClose ? '↑ ' : price < prevClose ? '↓ ' : '- '}
               today
             </>

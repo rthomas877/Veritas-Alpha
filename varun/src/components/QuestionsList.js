@@ -38,7 +38,7 @@ function QuestionList() {
                 <h3 className="FAQAnswer">Users can get access to AI analysis once they sign up for an account.</h3>
                 </ol>
             <hr className="breakLine"/>
-            <h2 className="FAQCategory">Educational Resources:</h2>
+            <h2 className="FAQCategory">Financial Education:</h2>
             <ol className="FAQQuestions">
                 <li>Do you offer resources for beginners?</li>
                 <h3 className="FAQAnswer">Yes, our “Learn” tab contains links to multiple articles and resources to further your financial education.</h3>
