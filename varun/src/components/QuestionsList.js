@@ -25,7 +25,7 @@ function QuestionList() {
                 <li>Where does the stock data come from?</li>
                 <h3 className="FAQAnswer">We source real-time market data from Yahoo Finance.</h3>
                 <li>How often is the data updated?</li>
-                <h3 className="FAQAnswer">Real-time for some exchanges; otherwise, quotes may be delayed by up to 15–20 minutes.</h3>
+                <h3 className="FAQAnswer">Real-time for some exchanges; otherwise, quotes may be delayed by a few minutes.</h3>
                 <li>Can I create a watchlist or portfolio?</li>
                 <h3 className="FAQAnswer">Yes, registered users can create custom watchlists and track their portfolio performance.</h3>
                 </ol>

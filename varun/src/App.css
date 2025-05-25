@@ -372,9 +372,70 @@ body {
   padding: 1vw;
   padding-top: 4vh;
   padding-left: 3vw;
+  padding-bottom: 0vw;
   margin: 0;
   font-family: 'Outfit', sans-serif;
   font-size: 2.5vw;
+  color: #004226ff
+}
+
+.stockSubtitle {
+  background-color: #f5f5dc;
+  padding: 1vw;
+  padding-top: 1vh;
+  padding-left: 3vw;
+  padding-bottom: 0vw;
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 2vw;
+  color: #004226ff
+}
+
+.stockSubtitleR {
+  background-color: #f5f5dc;
+  padding: 1vw;
+  padding-top: 1vh;
+  padding-left: 3vw;
+  padding-bottom: 0vw;
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 2vw;
+  color: #b22222
+}
+
+.stockSubtitleGray {
+  background-color: #f5f5dc;
+  padding: 1vw;
+  padding-top: 1vh;
+  padding-left: 3vw;
+  padding-bottom: 0vw;
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 2vw;
+  color: #434c50
+}
+
+.loading {
+  background-color: #f5f5dc;
+  padding: 1vw;
+  padding-top: 1vh;
+  padding-left: 3vw;
+  padding-bottom: 75vh;
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 3vw;
+  color: #004226ff
+}
+
+.fillerSpace {
+  background-color: #f5f5dc;
+  padding: 1vw;
+  padding-top: 1vh;
+  padding-left: 3vw;
+  padding-bottom: 64vh;
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 3vw;
   color: #004226ff
 }
 

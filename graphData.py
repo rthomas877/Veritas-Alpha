@@ -16,7 +16,7 @@ def get_graphData():
 
     try:
         ticker = yf.Ticker(symbol)
-        hist = ticker.history(period="1mo")
+        hist = ticker.history(period="3mo")
 
         # Convert datetime index to string dates
         dates = hist.index.strftime('%Y-%m-%d').tolist()
@@ -28,6 +28,7 @@ def get_graphData():
 
         info = ticker.info
         price = info.get("regularMarketPrice", None)
+        prevClose = info.get("previousClose", None)
         exchangeName = info.get("fullExchangeName", "")
         longName = info.get("longName", "")
 
@@ -43,9 +44,11 @@ def get_graphData():
             "symbol": symbol,
             "exchangeName": exchangeName,
             "longName": longName,
+            "prevClose": prevClose,
+            "error": "",
         })
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": str(e), "symbol": symbol}), 500
 
 if __name__ == "__main__":
     app.run(port=5001, debug=False)

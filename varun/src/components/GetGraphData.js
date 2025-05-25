@@ -10,7 +10,11 @@ function GetGraphData({ ticker }) {
   const [symbol, setSymbol] = useState('');
   const [exchangeName, setExchangeName] = useState('');
   const [longName, setLongName] = useState('');
+  const [prevClose, setPrevClose] = useState('');
   const [error, setError] = useState(null);
+
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     if (!ticker) return;
@@ -27,22 +31,27 @@ function GetGraphData({ ticker }) {
           setLow(data.low || []);
           setClose(data.close || []);
           setPrice(data.price || null);
+          setPrevClose(data.prevClose || null);
           setSymbol(data.symbol || '');
           setExchangeName(data.exchangeName || '');
           setLongName(data.longName || '');
           setError(null);
         } else {
+          setLoading(false);
           setError(data.error || 'Failed to fetch data');
         }
       } catch (error) {
+        setLoading(false);
         setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, [ticker]);
 
-  return { dates, open, high, low, close, price, symbol, exchangeName, longName, error };
+  return { dates, open, high, low, close, price, symbol, exchangeName, longName, prevClose, error, loading };
 }
 
 export default GetGraphData;
