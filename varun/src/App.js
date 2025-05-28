@@ -5,6 +5,7 @@ import Home from './components/Home';
 import About from './components/About';
 import FAQs from './components/FAQs';
 import StockScreen from './components/StockScreen';
+import Learn from './components/Learn';
 
 
 function App() {    
@@ -15,6 +16,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/faq" element={<FAQs />} />
         <Route path="/stock" element={<StockScreen />} />
+        <Route path="/learn" element={<Learn />} />
       </Routes>
     </Router>
   );

@@ -11,7 +11,7 @@ function LightWeightSB() {
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             if (query !== "") {
-                navigate(`/stock?q=${encodeURIComponent(query.trim())}`);
+                navigate(`/stock?q=${encodeURIComponent(query.trim())}&t=3mo`);
                 setQuery("");
             }
         }
@@ -19,7 +19,7 @@ function LightWeightSB() {
     
       const handleSearch = (e) => {
         if (query !== "") {
-            navigate(`/stock?q=${encodeURIComponent(query.trim())}`);
+            navigate(`/stock?q=${encodeURIComponent(query.trim())}&t=3mo`);
             setQuery("");
         }
       };

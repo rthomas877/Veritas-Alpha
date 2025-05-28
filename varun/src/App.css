@@ -379,43 +379,43 @@ body {
   padding-bottom: 0vw;
   margin: 0;
   font-family: 'Outfit', sans-serif;
-  font-size: 2.5vw;
+  font-size: 2.25vw;
   color: #004226ff
 }
 
 .stockSubtitle {
   background-color: #f5f5dc;
   padding: 1vw;
-  padding-top: 1vh;
+  padding-top: 0.5vh;
   padding-left: 3vw;
   padding-bottom: 0vw;
   margin: 0;
   font-family: 'Outfit', sans-serif;
-  font-size: 2vw;
+  font-size: 1.75vw;
   color: #004226ff
 }
 
 .stockSubtitleR {
   background-color: #f5f5dc;
   padding: 1vw;
-  padding-top: 1vh;
+  padding-top: 0.5vh;
   padding-left: 3vw;
   padding-bottom: 0vw;
   margin: 0;
   font-family: 'Outfit', sans-serif;
-  font-size: 2vw;
+  font-size: 1.75vw;
   color: #b22222
 }
 
 .stockSubtitleGray {
   background-color: #f5f5dc;
   padding: 1vw;
-  padding-top: 1vh;
+  padding-top: 0.5vh;
   padding-left: 3vw;
   padding-bottom: 0vw;
   margin: 0;
   font-family: 'Outfit', sans-serif;
-  font-size: 2vw;
+  font-size: 1.75vw;
   color: #434c50
 }
 
@@ -548,3 +548,98 @@ body {
   margin-top: 0;
 }
 
+.timeRangeButton {
+  font-family: 'Arial', sans-serif;
+  border: .3vh solid;
+  border-radius: 25px;
+  border-color: #a8a87f;
+  background-color: #f5f5dc;
+  font-size: .85vw;
+  color: #a8a87f;
+  font-weight: bold;
+  outline: none;
+  margin: 0.5vw;
+}
+
+.timeButtons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.rightButtons {
+  margin-left: auto; /* pushes this container to the right */
+  display: flex;
+  margin-right: 2vw;
+}
+
+.graphTypeButton {
+  font-family: 'Arial', sans-serif;
+  border: .3vh solid;
+  border-radius: 25px;
+  border-color: #a8a87f;
+  background-color: #f5f5dc;
+  font-size: .85vw;
+  color: #a8a87f;
+  font-weight: bold;
+  outline: none;
+  margin: 0.5vw;
+}
+
+.timeRangeButton:hover {
+  font-family: 'Arial', sans-serif;
+  border: .3vh solid;
+  border-radius: 25px;
+  border-color: #a8a87f;
+  background-color: #a8a87f;
+  font-size: .85vw;
+  font-weight: bold;
+  color: #f5f5dc;
+  outline: none;
+  margin: 0.5vw;
+}
+
+.graphTypeButton:hover {
+  font-family: 'Arial', sans-serif;
+  border: .3vh solid;
+  border-radius: 25px;
+  border-color: #a8a87f;
+  background-color: #a8a87f;
+  font-size: .85vw;
+  font-weight: bold;
+  color: #f5f5dc;
+  outline: none;
+  margin: 0.5vw;
+}
+
+.timeRangeButtonClicked {
+  font-family: 'Arial', sans-serif;
+  border: .3vh solid;
+  border-radius: 25px;
+  border-color: #a8a87f;
+  background-color: #a8a87f;
+  font-size: .85vw;
+  font-weight: bold;
+  color: #f5f5dc;
+  outline: none;
+  margin: 0.5vw;
+}
+
+.graphTypeButtonClicked {
+  font-family: 'Arial', sans-serif;
+  margin-left: 1vw;
+  border: .3vh solid;
+  border-radius: 25px;
+  border-color: #a8a87f;
+  background-color: #a8a87f;
+  font-size: .85vw;
+  font-weight: bold;
+  color: #f5f5dc;
+  outline: none;
+  margin: 0.5vw;
+} 
+
+.timeButtons {
+  background-color: #f5f5dc;
+  padding-left: 3vw;
+}

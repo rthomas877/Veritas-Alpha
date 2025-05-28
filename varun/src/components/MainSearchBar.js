@@ -11,14 +11,14 @@ function MainSearchBar() {
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
           if (query !== "") {
-            navigate(`/stock?q=${encodeURIComponent(query)}`);
+            navigate(`/stock?q=${encodeURIComponent(query)}&t=3mo`);
           }
         }
       };
     
       const handleSearch = (e) => {
         if (query !== "") {
-          navigate(`/stock?q=${encodeURIComponent(query)}`);
+          navigate(`/stock?q=${encodeURIComponent(query)}&t=3mo`);
         }
       };
 

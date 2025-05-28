@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function GetGraphData({ ticker }) {
+function GetGraphData({ ticker, time }) {
   const [dates, setDates] = useState([]);
   const [open, setOpen] = useState([]);
   const [high, setHigh] = useState([]);
@@ -12,6 +12,7 @@ function GetGraphData({ ticker }) {
   const [longName, setLongName] = useState('');
   const [prevClose, setPrevClose] = useState('');
   const [error, setError] = useState(null);
+  const [timeR, setTimeR] = useState('');
 
   const [loading, setLoading] = useState(true);
 
@@ -21,7 +22,7 @@ function GetGraphData({ ticker }) {
 
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:5001/api/graphData?symbol=${encodeURIComponent(ticker)}`);
+        const response = await fetch(`http://127.0.0.1:5001/api/graphData?symbol=${encodeURIComponent(ticker)}&time=${encodeURIComponent(time)}`);
         const data = await response.json();
 
         if (response.ok) {
@@ -36,6 +37,7 @@ function GetGraphData({ ticker }) {
           setExchangeName(data.exchangeName || '');
           setLongName(data.longName || '');
           setError(null);
+          setTimeR(data.time);
         } else {
           setLoading(false);
           setSymbol(ticker || '');
@@ -51,9 +53,9 @@ function GetGraphData({ ticker }) {
     };
 
     fetchData();
-  }, [ticker]);
+  }, [ticker, time]);
 
-  return { dates, open, high, low, close, price, symbol, exchangeName, longName, prevClose, error, loading };
+  return { dates, open, high, low, close, price, symbol, exchangeName, longName, prevClose, error, loading, timeR };
 }
 
 export default GetGraphData;
