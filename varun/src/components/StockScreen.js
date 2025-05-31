@@ -134,6 +134,11 @@ function StockScreen() {
       minimumFractionDigits: 2, 
       maximumFractionDigits: 2 
     });
+
+    const prevPriceDisplay = prevClose?.toLocaleString(undefined, { 
+      minimumFractionDigits: 2, 
+      maximumFractionDigits: 2 
+    });
     
     const changeDisplay = priceChange.amount.toLocaleString(undefined, { 
       minimumFractionDigits: 2, 
@@ -159,7 +164,7 @@ function StockScreen() {
         <h2 className={subtitleClass}>
           {priceChange.direction === 'up' ? '+' : ''}{changeDisplay}&nbsp;
           ({percentageDisplay}%)&nbsp;
-          {arrow} {currentTimeConfig.displayName}
+          {arrow} {currentTimeConfig.displayName}  {currentTimeConfig.displayName === 'today' ? " — Previous Close: $" + prevPriceDisplay : null}
         </h2>
       </>
     );
