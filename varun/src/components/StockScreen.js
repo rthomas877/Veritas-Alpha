@@ -76,7 +76,7 @@ function StockScreen() {
   // Effects
   useEffect(() => {
     if (!loading) {
-      document.title = error === null 
+      document.title = error === null && exchangeName !== "" 
         ? `Veritas Alpha | ${longName}` 
         : "Veritas Alpha | No Results";
       setShowContent(true);
@@ -86,7 +86,7 @@ function StockScreen() {
         setUseCandlestick(currentTimeConfig.candlestick);
       }
     }
-  }, [error, longName, loading, currentTimeConfig.candlestick]);
+  }, [error, longName, loading, currentTimeConfig.candlestick, exchangeName]);
   
   // Render helpers
   const renderTimeRangeButtons = () => (
@@ -121,7 +121,7 @@ function StockScreen() {
   );
   
   const renderStockInfo = () => {
-    if (error) {
+    if (error || exchangeName === "") {
       return (
         <>
           <h2 className="stockTitle">No results for {symbol}</h2>
@@ -171,7 +171,7 @@ function StockScreen() {
   };
   
   const renderChart = () => {
-    if (error || !close.length) {
+    if (error || !close.length || exchangeName === "") {
       return <h2 className="fillerSpace"> </h2>;
     }
     
@@ -240,7 +240,7 @@ function StockScreen() {
         <div>
           {renderStockInfo()}
           
-          {error === null && !loading ? 
+          {error === null && !loading && exchangeName !== "" ? 
             renderTimeRangeButtons() : 
             <h2 className="loading"> </h2>
           }
