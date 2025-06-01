@@ -3,7 +3,7 @@ function LearnContent() {
         <div className="faqList">
             <h1 className="FAQTitle">Learn</h1>
             <br></br>
-            <h2 className="FAQAnswer">This section is your starting point for understanding the basics of stock analysis. Rather than overwhelming you with information, we've gathered a collection of trusted resources, guides, and tools to help you learn at your own pace. Whether you're new to investing or looking to explore new strategies, these links will point you in the right direction to build a solid foundation and make more informed decisions.</h2>
+            <h2 className="FAQAnswer">This section is your starting point for understanding the basics of stock analysis and finance. Rather than overwhelming you with information, we've gathered a collection of trusted resources, guides, and tools to help you learn at your own pace. Whether you're new to investing or looking to explore new strategies, these links will point you in the right direction to build a solid foundation and make more informed decisions.</h2>
             <hr className="breakLine"/>
             <h2 className="FAQCategory">Investing Basics:</h2>
             <ul className="FAQQuestions">
