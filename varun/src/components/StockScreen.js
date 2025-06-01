@@ -121,7 +121,7 @@ function StockScreen() {
   );
   
   const renderStockInfo = () => {
-    if (error || exchangeName === "") {
+    if (error || exchangeName === "" || longName === "") {
       return (
         <>
           <h2 className="stockTitle">No results for {symbol}</h2>
@@ -171,7 +171,7 @@ function StockScreen() {
   };
   
   const renderChart = () => {
-    if (error || !close.length || exchangeName === "") {
+    if (error || !close.length || exchangeName === "" || longName === "") {
       return <h2 className="fillerSpace"> </h2>;
     }
     
@@ -240,7 +240,7 @@ function StockScreen() {
         <div>
           {renderStockInfo()}
           
-          {error === null && !loading && exchangeName !== "" ? 
+          {error === null && !loading && exchangeName !== "" && longName !== "" ? 
             renderTimeRangeButtons() : 
             <h2 className="loading"> </h2>
           }
@@ -250,7 +250,6 @@ function StockScreen() {
       ) : (
         <h2 className="loading">Loading...</h2>
       )}
-      
       <Footer />
     </>
   );

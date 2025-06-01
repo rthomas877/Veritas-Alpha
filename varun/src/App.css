@@ -533,7 +533,9 @@ body {
 .breakLine {
   background-color: #004226ff;
   height: 400px;
-  
+  margin-top: 2.5em;
+  margin-bottom: 2em;
+
 }
 
 .lightSearchBox {
