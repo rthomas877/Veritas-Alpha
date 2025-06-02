@@ -23,7 +23,7 @@ const TIME_RANGES = {
 function StockScreen() {
   const { search } = useLocation();
   const navigate = useNavigate();
-  let candlestick = useRef(true);
+  let candlestick = useRef(true); // to keep candlestick states across states
   
   // Extract query parameters
   const query = new URLSearchParams(search).get('q');
@@ -204,8 +204,8 @@ function StockScreen() {
     };
     
     const yAxisRange = close.length > 0 ? [
-      Math.min(...close) * 0.98,
-      Math.max(...close) * 1.02
+      Math.min(...low) * 0.98,
+      Math.max(...high) * 1.02
     ] : undefined;
     
     return (
@@ -229,6 +229,7 @@ function StockScreen() {
               tickformat: ',.2f',
               nticks: 7,
               fixedrange: true,
+              autorange: false, // keeps line chart yaxis from starting at zero
               range: yAxisRange
             }
           }}
