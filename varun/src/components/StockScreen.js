@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Plot from 'react-plotly.js';
 import Header from './Header';
@@ -23,6 +23,7 @@ const TIME_RANGES = {
 function StockScreen() {
   const { search } = useLocation();
   const navigate = useNavigate();
+  let candlestick = useRef(true);
   
   // Extract query parameters
   const query = new URLSearchParams(search).get('q');
@@ -66,11 +67,15 @@ function StockScreen() {
   const handleTimeRangeChange = useCallback((newTimeRange) => {
     if (query) {
       navigate(`/stock?q=${encodeURIComponent(query.trim())}&t=${newTimeRange}`);
+      if (newTimeRange !== "1d" && newTimeRange !== "5d") {
+        setUseCandlestick(candlestick.current);
+      }
     }
   }, [query, navigate]);
   
   const handleGraphTypeChange = useCallback((isCandlestick) => {
     setUseCandlestick(isCandlestick);
+    candlestick.current = isCandlestick;
   }, []);
   
   // Effects
@@ -83,10 +88,14 @@ function StockScreen() {
       
       // Set chart type based on time range
       if (currentTimeConfig.candlestick !== undefined) {
-        setUseCandlestick(currentTimeConfig.candlestick);
+        if (timeRange === "1d" || timeRange === "5d") {
+          setUseCandlestick(false);
+        } else {
+          setUseCandlestick(candlestick.current);
+        } 
       }
     }
-  }, [error, longName, loading, currentTimeConfig.candlestick, exchangeName]);
+  }, [error, longName, loading, currentTimeConfig.candlestick, exchangeName, candlestick, timeRange]);
   
   // Render helpers
   const renderTimeRangeButtons = () => (
@@ -250,6 +259,7 @@ function StockScreen() {
       ) : (
         <h2 className="loading">Loading...</h2>
       )}
+      <div><h2>hello yo</h2></div>
       <Footer />
     </>
   );

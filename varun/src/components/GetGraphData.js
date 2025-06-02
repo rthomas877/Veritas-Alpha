@@ -58,7 +58,7 @@ function GetGraphData({ ticker, time }) {
     const selectedTime = time || '3mo';
 
     // If we have cached data for this symbol, use it
-    if (allDataCache.current[normalizedTicker]) {
+    if (allDataCache.current[normalizedTicker]) { // checks if ticker is in cached data
       updateStateFromTimeRange(allDataCache.current[normalizedTicker], selectedTime);
       setLoading(false);
       return;
