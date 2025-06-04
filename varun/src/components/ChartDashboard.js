@@ -8,9 +8,9 @@ function ChartDashboard() {
         { title: "^GSPC", name: "S&P500" },
         { title: "^IXIC", name: "NASDAQ" },
         { title: "BTC-USD", name: "BTC" },
+        { title: "NVDA", name: "NVDA" },
         { title: "MSFT", name: "MSFT" },
         { title: "AAPL", name: "AAPL" },
-        { title: "NVDA", name: "NVDA" },
         { title: "MSTR", name: "MSTR" },
     ];   
     

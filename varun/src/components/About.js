@@ -4,7 +4,7 @@ import Footer from './Footer';
 // import Break from '../Break';
 import Bio from './Bio';
 import React, { useEffect } from 'react';
-
+import Divider from './Divider';
 
 function About() {    
 
@@ -19,6 +19,24 @@ function About() {
       <Break /> */}
       <Bio />
       <Footer />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
+      <Divider />
     </>
   );
 }

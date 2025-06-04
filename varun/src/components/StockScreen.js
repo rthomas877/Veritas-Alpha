@@ -224,7 +224,9 @@ function StockScreen() {
               rangeslider: { visible: false },
               type: 'category',
               nticks: 5,
-              fixedrange: true
+              fixedrange: true,
+              automargin: true,
+              
             },
             yaxis: {
               tickformat: ',.2f',
@@ -265,11 +267,12 @@ function StockScreen() {
         {error === null && quoteType === "EQUITY" ? (
           <>
             <Divider />
-            <div className='faqList'>
-            <h2 className="FAQTitle1">
-              Financial Data for {longName}
-            </h2>
-          </div>
+              <div className='faqList'>
+              <h2 className="FAQTitle1">
+                Financial Data for {longName}
+              </h2>
+              <h1>hhs</h1>
+            </div>
           </>
         ) : null}
       </div>

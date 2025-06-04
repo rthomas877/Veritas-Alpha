@@ -126,17 +126,7 @@ body {
   }
 }
 
-.chartDashboard {
-  display: flex;
-  gap: 15px; /* Space between boxes */
-  justify-content: center; /* Centers boxes horizontally */
-  overflow-x: auto; /* Enables horizontal scrolling */
-  white-space: nowrap; /* Prevents wrapping */
-  justify-content: flex-start; /* Align tiles to the left */
-  scroll-snap-type: x mandatory; /* Smooth snapping while scrolling */
-  padding: 20px;
-  background-color: #f5f5dc;
-}
+
 
 .fillerSpace {
   padding: 20px;
@@ -274,7 +264,7 @@ body {
   text-align: center;
   border-color: #004226ff;
   border-radius: 5px 0 0 5px;
-  height: 5vh;
+  height: 45px;
   color: #004226ff;
   background-color: #f5f5dc;
   font-size: 1.25vw;
@@ -290,7 +280,7 @@ body {
   text-align: center;
   border-color: #004226ff;
   border-radius: 5px 0 0 5px;
-  height: 5vh;
+  height: 45px;
   color: #004226ff;
   background-color: #f5f5dc;
   font-size: 1.25vw;
@@ -302,7 +292,7 @@ body {
   vertical-align: middle;
   margin-bottom: 9vh;
   line-height: 4.5vh; /* matches height for vertical centering */
-  height: 5vh;
+  height: 45px;
   border: 3px solid;
   border-radius: 0 5px 5px 0;
   border-color: #004226ff;
@@ -316,7 +306,7 @@ body {
   display: inline-block;
   vertical-align: middle;
   line-height: 4.5vh; /* matches height for vertical centering */
-  height: 5vh;
+  height: 45px;
   border: 3px solid;
   border-radius: 0 5px 5px 0;
   border-color: #004226ff;
@@ -453,7 +443,7 @@ body {
 }
 
 .footer1 {
-  height: auto;
+  height: 100%;
   border: 2px solid #004226ff;
   background-color: #004226ff;
   text-align: center;
@@ -461,6 +451,8 @@ body {
   padding: 1vw 0; /*Combine top and bottom padding*/
   color: white;
   width: 100%;
+  margin-bottom: auto;
+  
 }
 
 .footer2 {
@@ -664,6 +656,35 @@ body {
 /*Resets all button settings*/
 .dashboardButton {
   all: unset; 
-  display: inline-block; 
+  display: flex;
+  gap: 15px; /* Space between boxes */
+  justify-content: center; /* Centers boxes horizontally */
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Prevents wrapping */
+  justify-content: flex-start; /* Align tiles to the left */
+  scroll-snap-type: x mandatory; /* Smooth snapping while scrolling */
   cursor: pointer;
+  flex: 1 1 auto;
+  min-width: 170px; /* Prevents boxes from becoming too small */
+  max-width: 3000px;
+}
+
+.chartDashboard {
+  display: flex;
+  gap: 15px; /* Space between boxes */
+  justify-content: center; /* Centers boxes horizontally */
+  overflow-x: auto; /* Enables horizontal scrolling */
+  white-space: nowrap; /* Prevents wrapping */
+  justify-content: flex-start; /* Align tiles to the left */
+  scroll-snap-type: x mandatory; /* Smooth snapping while scrolling */
+  padding: 20px;
+  background-color: #f5f5dc;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+
 }
