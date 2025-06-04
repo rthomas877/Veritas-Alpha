@@ -1,4 +1,6 @@
 import DashboardBox from "./DashboardBox";
+import { useNavigate } from 'react-router-dom';
+
 
 function ChartDashboard() {
     const data = [
@@ -10,12 +12,20 @@ function ChartDashboard() {
         { title: "AAPL", name: "AAPL" },
         { title: "NVDA", name: "NVDA" },
         { title: "MSTR", name: "MSTR" },
-    ];    
+    ];   
+    
+    const navigate = useNavigate();  
+
+    function handleClick(ticker) {
+        navigate(`/stock?q=${encodeURIComponent(ticker)}&t=3mo`);
+    }
 
     return (
         <div className="chartDashboard">
             {data.map((item, index) => (
-                <DashboardBox key={index} title={item.title} name={item.name} />
+                <button className="dashboardButton" onClick={() => handleClick(item.title)}>
+                    <DashboardBox key={index} title={item.title} name={item.name} />
+                </button>
             ))}
         </div>
     );

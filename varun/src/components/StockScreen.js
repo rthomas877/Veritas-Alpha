@@ -5,6 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import LightWeightSB from './LightWeightSB';
 import GetGraphData from './GetGraphData';
+import Divider from './Divider';
 
 const TIME_RANGES = {
   '1d': { label: '1D', displayName: 'today', candlestick: false },
@@ -32,7 +33,7 @@ function StockScreen() {
   // Get stock data (now cached and optimized)
   const { 
     dates, open, high, low, close, price, symbol, exchangeName, 
-    longName, prevClose, error, loading, timeR 
+    longName, prevClose, error, loading, timeR, quoteType 
   } = GetGraphData({ ticker: query, time: timeRange });
   
   // Component state
@@ -260,7 +261,18 @@ function StockScreen() {
       ) : (
         <h2 className="loading">Loading...</h2>
       )}
-      <div><h2>hello yo</h2></div>
+      <div>
+        {error === null && quoteType === "EQUITY" ? (
+          <>
+            <Divider />
+            <div className='faqList'>
+            <h2 className="FAQTitle1">
+              Financial Data for {longName}
+            </h2>
+          </div>
+          </>
+        ) : null}
+      </div>
       <Footer />
     </>
   );

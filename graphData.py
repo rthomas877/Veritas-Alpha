@@ -146,6 +146,7 @@ def get_all_time_data(ticker):
         price = info.get("regularMarketPrice", None)
         exchange_name = info.get("fullExchangeName", "")
         long_name = info.get("longName", "")
+        quoteType = info.get("quoteType", "N/A")
         
         return {
             "symbol": ticker.upper(),
@@ -153,6 +154,7 @@ def get_all_time_data(ticker):
             "exchangeName": exchange_name,
             "longName": long_name,
             "timeRanges": data_sets,
+            "quoteType": quoteType,
             "error": None
         }
         

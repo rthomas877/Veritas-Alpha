@@ -14,6 +14,7 @@ function GetGraphData({ ticker, time }) {
   const [error, setError] = useState(null);
   const [timeR, setTimeR] = useState('');
   const [loading, setLoading] = useState(true);
+  const [quoteType, setQuoteType] = useState("");
 
   // Cache for storing all time range data for each stock
   const allDataCache = useRef({});
@@ -30,6 +31,7 @@ function GetGraphData({ ticker, time }) {
       setClose(timeRangeData.close || []);
       setPrevClose(timeRangeData.prevClose || null);
       setTimeR(selectedTime);
+      setQuoteType(allData.quoteType || "N/A")
     } else {
       // Fallback to empty arrays if time range not available
       setDates([]);
@@ -46,6 +48,7 @@ function GetGraphData({ ticker, time }) {
     setExchangeName(allData.exchangeName || '');
     setLongName(allData.longName || '');
     setError(null);
+    setQuoteType(allData.quoteType || "N/A")
   };
 
   useEffect(() => {
@@ -122,7 +125,8 @@ function GetGraphData({ ticker, time }) {
     prevClose, 
     error, 
     loading, 
-    timeR 
+    timeR, 
+    quoteType
   };
 }
 

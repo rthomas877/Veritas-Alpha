@@ -453,13 +453,22 @@ body {
 }
 
 .footer1 {
+  height: auto;
   border: 2px solid #004226ff;
   background-color: #004226ff;
-  height: auto;
   text-align: center;
   font-size: 1.25vw;
   padding: 1vw 0; /*Combine top and bottom padding*/
   color: white;
+  width: 100%;
+}
+
+.footer2 {
+  height: 3vh;
+  border: 0.5vh solid #004226ff;
+  background-color: #004226ff;
+  /* padding: 1vw 0; Combine top and bottom padding */
+  width: 100%;
 }
 
 .Yahoo {
@@ -516,6 +525,12 @@ body {
 .FAQTitle {
   font-size: 3.75vw;
 }
+
+.FAQTitle1 {
+  font-size: 3.75vw;
+  text-align: center;
+}
+
 
 .FAQCategory {
   font-size: 2.5vw;
@@ -644,4 +659,11 @@ body {
 .timeButtons {
   background-color: #f5f5dc;
   padding-left: 3vw;
+}
+
+/*Resets all button settings*/
+.dashboardButton {
+  all: unset; 
+  display: inline-block; 
+  cursor: pointer;
 }

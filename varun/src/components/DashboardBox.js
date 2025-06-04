@@ -13,22 +13,22 @@ function DashboardBox({ title, name }) {
 
 
   return (
-  <div className={colorClass}>
-      <div className="ticker-container">
-          <p className="ticker">{name}</p>
-          <p className="ticker">{priceReal}</p>  
-      </div>      
-      <div className="direction-container">
-          <p className="direction">{direction}</p>
-          <div className="direction-sub">
-              <p className="direction">{change}&nbsp;</p>
-              <p className="direction" class="x">{percentReal}</p>
-          </div>
+    <div className={colorClass}>
+        <div className="ticker-container">
+            <p className="ticker">{name}</p>
+            <p className="ticker">{priceReal}</p>  
+        </div>      
+        <div className="direction-container">
+            <p className="direction">{direction}</p>
+            <div className="direction-sub">
+                <p className="direction">{change}&nbsp;</p>
+                <p className="direction" class="x">{percentReal}</p>
+            </div>
+        </div>
+        <div className="updated-container">
+          <p>LAST | {timeReal}</p>
+        </div>
       </div>
-      <div className="updated-container">
-        <p>LAST | {timeReal}</p>
-      </div>
-    </div>
   );
 }
 
