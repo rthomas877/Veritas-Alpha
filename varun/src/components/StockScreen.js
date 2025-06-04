@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Plot from 'react-plotly.js';
 import Header from './Header';
@@ -40,8 +40,7 @@ function StockScreen() {
   const [showContent, setShowContent] = useState(false);
   const [useCandlestick, setUseCandlestick] = useState(true);
   
-  // Memoized calculations
-  const priceChange = useMemo(() => {
+  const priceChange = () => {
     if (!price || !prevClose) return { amount: 0, percentage: 0, direction: 'neutral' };
     
     const amount = price - prevClose;
@@ -49,35 +48,34 @@ function StockScreen() {
     const direction = amount > 0 ? 'up' : amount < 0 ? 'down' : 'neutral';
     
     return { amount, percentage, direction };
-  }, [price, prevClose]);
+  };
   
-  const colors = useMemo(() => {
-    if (priceChange.direction === 'up') {
+  const colors = () => {
+    if (priceChange().direction === 'up') {
       return { line: '#3d9970', fill: 'rgba(163, 204, 184, 0.4)' };
-    } else if (priceChange.direction === 'down') {
+    } else if (priceChange().direction === 'down') {
       return { line: '#ff4136', fill: 'rgba(255, 164, 158, 0.4)' };
     }
     return { line: '#666', fill: 'rgba(166, 166, 166, 0.4)' };
-  }, [priceChange.direction]);
+  };
   
-  const currentTimeConfig = useMemo(() => {
+  const currentTimeConfig = () => {
     return TIME_RANGES[timeR] || TIME_RANGES['3mo'];
-  }, [timeR]);
+  };
   
-  // Navigation handlers - now much faster since no API call needed
-  const handleTimeRangeChange = useCallback((newTimeRange) => {
+  const handleTimeRangeChange = (newTimeRange) => {
     if (query) {
       navigate(`/stock?q=${encodeURIComponent(query.trim())}&t=${newTimeRange}`);
       if (newTimeRange !== "1d" && newTimeRange !== "5d") {
         setUseCandlestick(candlestick.current);
       }
     }
-  }, [query, navigate]);
+  };
   
-  const handleGraphTypeChange = useCallback((isCandlestick) => {
+  const handleGraphTypeChange = (isCandlestick) => {
     setUseCandlestick(isCandlestick);
     candlestick.current = isCandlestick;
-  }, []);
+  };
   
   // Effects
   useEffect(() => {
@@ -88,7 +86,7 @@ function StockScreen() {
       setShowContent(true);
       
       // Set chart type based on time range
-      if (currentTimeConfig.candlestick !== undefined) {
+      if (currentTimeConfig().candlestick !== undefined) {
         if (timeRange === "1d" || timeRange === "5d") {
           setUseCandlestick(false);
         } else {
@@ -96,7 +94,7 @@ function StockScreen() {
         } 
       }
     }
-  }, [error, longName, loading, currentTimeConfig.candlestick, exchangeName, candlestick, timeRange]);
+  }, [error, longName, loading, currentTimeConfig().candlestick, exchangeName, candlestick, timeRange]);
   
   // Render helpers
   const renderTimeRangeButtons = () => (
@@ -150,21 +148,21 @@ function StockScreen() {
       maximumFractionDigits: 2 
     });
     
-    const changeDisplay = priceChange.amount.toLocaleString(undefined, { 
+    const changeDisplay = priceChange().amount.toLocaleString(undefined, { 
       minimumFractionDigits: 2, 
       maximumFractionDigits: 2 
     });
     
-    const percentageDisplay = priceChange.percentage.toLocaleString(undefined, { 
+    const percentageDisplay = priceChange().percentage.toLocaleString(undefined, { 
       minimumFractionDigits: 2, 
       maximumFractionDigits: 2 
     });
     
-    const subtitleClass = priceChange.direction === 'up' ? 'stockSubtitle' : 
-                         priceChange.direction === 'down' ? 'stockSubtitleR' : 'stockSubtitleGray';
+    const subtitleClass = priceChange().direction === 'up' ? 'stockSubtitle' : 
+                         priceChange().direction === 'down' ? 'stockSubtitleR' : 'stockSubtitleGray';
     
-    const arrow = priceChange.direction === 'up' ? '↑' : 
-                  priceChange.direction === 'down' ? '↓' : '-';
+    const arrow = priceChange().direction === 'up' ? '↑' : 
+                  priceChange().direction === 'down' ? '↓' : '-';
     
     return (
       <>
@@ -172,9 +170,9 @@ function StockScreen() {
           {longName} ({symbol}:{exchangeName}) - ${priceDisplay}
         </h2>
         <h2 className={subtitleClass}>
-          {priceChange.direction === 'up' ? '+' : ''}{changeDisplay}&nbsp;
+          {priceChange().direction === 'up' ? '+' : ''}{changeDisplay}&nbsp;
           ({percentageDisplay}%)&nbsp;
-          {arrow} {currentTimeConfig.displayName}  {currentTimeConfig.displayName === 'today' ? " — Previous Close: $" + prevPriceDisplay : null}
+          {arrow} {currentTimeConfig().displayName}  {currentTimeConfig().displayName === 'today' ? " — Previous Close: $" + prevPriceDisplay : null}
         </h2>
       </>
     );
@@ -199,9 +197,9 @@ function StockScreen() {
       type: 'scatter',
       mode: 'lines',
       name: 'Close Price',
-      line: { color: colors.line },
+      line: { color: colors().line },
       fill: 'tozeroy',
-      fillcolor: colors.fill,
+      fillcolor: colors().fill,
     };
     
     const yAxisRange = close.length > 0 ? [
