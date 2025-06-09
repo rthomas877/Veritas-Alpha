@@ -37,6 +37,7 @@ function About() {
       <Divider />
       <Divider />
       <Divider />
+      <Divider />
     </>
   );
 }

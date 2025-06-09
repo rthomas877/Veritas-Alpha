@@ -33,7 +33,8 @@ function StockScreen() {
   // Get stock data (now cached and optimized)
   const { 
     dates, open, high, low, close, price, symbol, exchangeName, 
-    longName, prevClose, error, loading, timeR, quoteType 
+    longName, prevClose, error, loading, timeR, quoteType, total_revenue_yearly,
+    time_yearly
   } = GetGraphData({ ticker: query, time: timeRange });
   
   // Component state
@@ -94,6 +95,7 @@ function StockScreen() {
         } 
       }
     }
+    // eslint-disable-next-line
   }, [error, longName, loading, currentTimeConfig().candlestick, exchangeName, candlestick, timeRange]);
   
   // Render helpers
@@ -269,7 +271,30 @@ function StockScreen() {
               <h2 className="FAQTitle1">
                 Financial Data for {longName}
               </h2>
-              <h1>hhs</h1>
+              <table border="1">
+              <thead>
+                <tr>
+                  <th>Year</th>
+                  <th>Revenue</th>
+                  <th>Profit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2023</td>
+                  <td>$500M</td>
+                  <td>$50M</td>
+                </tr>
+                <tr>
+                  <td>2022</td>
+                  <td>$450M</td>
+                  <td>$40M</td>
+                </tr>
+              </tbody>
+            </table>
+            <img src="VA AI Logo.svg" alt="BrandLogo" className="AILogo" />
+            <h1>{total_revenue_yearly}</h1>
+            <h1>{time_yearly}</h1>
             </div>
           </>
         ) : null}

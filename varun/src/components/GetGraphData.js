@@ -15,6 +15,8 @@ function GetGraphData({ ticker, time }) {
   const [timeR, setTimeR] = useState('');
   const [loading, setLoading] = useState(true);
   const [quoteType, setQuoteType] = useState("");
+  const [total_revenue_yearly, setTotal_revenue_yearly] = useState([]);
+  const [time_yearly, setTime_yearly] = useState([]);
 
   // Cache for storing all time range data for each stock
   const allDataCache = useRef({});
@@ -32,6 +34,8 @@ function GetGraphData({ ticker, time }) {
       setPrevClose(timeRangeData.prevClose || null);
       setTimeR(selectedTime);
       setQuoteType(allData.quoteType || "N/A")
+      setTotal_revenue_yearly(allData.total_revenue_yearly || []);
+      setTime_yearly(allData.time_yearly || []);
     } else {
       // Fallback to empty arrays if time range not available
       setDates([]);
@@ -41,6 +45,9 @@ function GetGraphData({ ticker, time }) {
       setClose([]);
       setPrevClose(null);
       setTimeR(selectedTime);
+      setQuoteType("");
+      setTotal_revenue_yearly([]);
+      setTime_yearly([]);
     }
     
     setPrice(allData.price || null);
@@ -126,7 +133,9 @@ function GetGraphData({ ticker, time }) {
     error, 
     loading, 
     timeR, 
-    quoteType
+    quoteType,
+    total_revenue_yearly,
+    time_yearly
   };
 }
 

@@ -4,6 +4,8 @@ from flask_cors import CORS
 import requests_cache
 import datetime
 import pandas as pd
+import math
+
 
 # Cache setup: cache lasts 20 minutes
 requests_cache.install_cache('yfinance_cache', expire_after=1200)
@@ -147,16 +149,52 @@ def get_all_time_data(ticker):
         exchange_name = info.get("fullExchangeName", "")
         long_name = info.get("longName", "")
         quoteType = info.get("quoteType", "N/A")
-        
-        return {
-            "symbol": ticker.upper(),
-            "price": price,
-            "exchangeName": exchange_name,
-            "longName": long_name,
-            "timeRanges": data_sets,
-            "quoteType": quoteType,
-            "error": None
-        }
+
+        # Get Stock Financials
+        if quoteType == "EQUITY":
+
+            # Fetch annual income statement
+            annual_income = stock.financials
+            annual_income = annual_income.T
+
+            time_yearly = []
+            for item in annual_income["Normalized EBITDA"].index:
+                time_yearly.append(item.strftime("%Y"))
+
+            def getData(name, target_list):
+                for item in annual_income[name]:
+                    if not (math.isnan(item)):
+                        target_list.append(int(item))
+                    else:
+                        target_list.append("None")
+                return target_list
+
+            total_revenue_yearly = []
+            total_revenue_yearly = getData("Total Revenue", total_revenue_yearly)
+
+            return {
+                "time_yearly": time_yearly,
+                "total_revenue_yearly": total_revenue_yearly,
+                "symbol": ticker.upper(),
+                "price": price,
+                "exchangeName": exchange_name,
+                "longName": long_name,
+                "timeRanges": data_sets,
+                "quoteType": quoteType,
+                "error": None,
+            }
+        else:
+            return {
+                "time_yearly": "N/A",
+                "total_revenue_yearly": "N/A",
+                "symbol": ticker.upper(),
+                "price": price,
+                "exchangeName": exchange_name,
+                "longName": long_name,
+                "timeRanges": data_sets,
+                "quoteType": quoteType,
+                "error": None
+            }
         
     except Exception as e:
         return {"error": str(e), "symbol": ticker.upper()}
