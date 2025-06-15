@@ -269,8 +269,13 @@ function StockScreen() {
         formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
       },
       {
+        label: 'EBITDA',
+        data: total_revenue_yearly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
         label: 'Profit',
-        data: [40000000, 50000000, 40000000, 50000000], // Replace with actual profit data
+        data: [-40000000, 50000000, -40000000, 50000000], // Replace with actual profit data
         formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
       },
       {
@@ -405,52 +410,6 @@ function StockScreen() {
         {error === null && quoteType === "EQUITY" && !(exchangeName === "" || longName === "") ? (
           <>
             <Divider />
-              <div className='faqList'>
-              <h2 className="FAQTitle1">
-                Financial Data for {longName}
-              </h2>
-              <hr></hr>
-              <h2 className='clarify'>*All values USD {dataDividerVerbose}</h2>
-              <table className='stockDataTable'>
-                <thead>
-                  <tr>
-                    <th className='topOfTable'>Fiscal Year</th>
-                    <th className='topOfTable'>{Math.floor(time_yearly[0]) - 3}</th>
-                    <th className='topOfTable'>{Math.floor(time_yearly[0]) - 2}</th>
-                    <th className='topOfTable'>{Math.floor(time_yearly[0]) - 1}</th>
-                    <th className='topOfTable'>{time_yearly[0]}</th>
-                    <th className='tableCell'>4-Year Trend</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th className='leftsideTable'>Revenue</th>
-                    <td>{Number.isFinite(total_revenue_yearly[3] / dataDivider) ? Math.round(total_revenue_yearly[3] / dataDivider).toLocaleString() : '-'}</td>
-                    <td>{Number.isFinite(total_revenue_yearly[3] / dataDivider) ? Math.round(total_revenue_yearly[2] / dataDivider).toLocaleString() : '-'}</td>
-                    <td>{Number.isFinite(total_revenue_yearly[3] / dataDivider) ? Math.round(total_revenue_yearly[1] / dataDivider).toLocaleString() : '-'}</td>
-                    <td>{Number.isFinite(total_revenue_yearly[3] / dataDivider) ? Math.round(total_revenue_yearly[0] / dataDivider).toLocaleString() : '-'}</td>
-                    <td className='tableCell'>{renderDataChart(total_revenue_yearly)}</td>
-                  </tr>
-                  <tr>
-                    <th>Profit</th>
-                    <td>$50M</td>
-                    <td>$40M</td>
-                    <td>$50M</td>
-                    <td>$40M</td>
-                    <td>CHART</td>
-                  </tr>
-                  <tr>
-                    <th>Mullah</th>
-                    <td>$50M</td>
-                    <td>$40M</td>
-                    <td>$50M</td>
-                    <td>$40M</td>
-                    <td>CHART</td>
-                  </tr>
-                </tbody>
-              </table>
-            <h1>{total_revenue_yearly}</h1>
-            </div>
             {renderFinancialDataTable()}
           </>
         ) : null}
