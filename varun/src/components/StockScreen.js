@@ -40,6 +40,8 @@ function StockScreen() {
   // Component state
   const [showContent, setShowContent] = useState(false);
   const [useCandlestick, setUseCandlestick] = useState(true);
+  const [dataDivider, setDataDivider] = useState(1000)
+  const [dataDividerVerbose, setDataDividerVerbose] = useState("Thousands")
   
   const priceChange = () => {
     if (!price || !prevClose) return { amount: 0, percentage: 0, direction: 'neutral' };
@@ -81,10 +83,20 @@ function StockScreen() {
   // Effects
   useEffect(() => {
     if (!loading) {
-      document.title = error === null && exchangeName !== "" 
+      document.title = error === null && exchangeName !== "" && quoteType !== "ECNQUOTE"
         ? `Veritas Alpha | ${longName}` 
         : "Veritas Alpha | No Results";
       setShowContent(true);
+
+      if (quoteType === "EQUITY") {
+        if (total_revenue_yearly[3] > 10000000000) {
+          setDataDivider(1000000)
+          setDataDividerVerbose("Millions")
+        } else if (total_revenue_yearly[3] <= 10000000000){
+          setDataDivider(1000)
+          setDataDividerVerbose("Thousands")
+        }
+      }
       
       // Set chart type based on time range
       if (currentTimeConfig().candlestick !== undefined) {
@@ -180,6 +192,132 @@ function StockScreen() {
     );
   };
   
+  // const renderDataChart = (type) => {
+
+  //   const yData = [type[3], type[2], type[1], type[0]];
+
+  //   const colors = yData.map(v => v >= 0 ? '#004226ff' : '#b22222');
+
+  //   const plotData = [{
+  //     y: yData,
+  //     marker: { color: colors },
+  //     type: 'bar',
+  //     showlegend: false,
+  //     hoverinfo: 'y',
+  //     width: .75
+  //   }];
+
+  //   const layout = {
+  //     margin: { t: 0, b: 0, l: 0, r: 0 },
+  //     xaxis: { visible: false },
+  //     yaxis: {
+  //       visible: false,
+  //       autorange: true,
+  //     },  
+  //     autosize: true,
+  //     paper_bgcolor: 'transparent',
+  //     plot_bgcolor: 'transparent',
+  //   };  
+
+  //   return <div className='tinyChart'><Plot data={plotData} layout={layout} config={{ displayModeBar: false, staticPlot: true, responsive: true }} style={{ width: '100%', height: '100%' }} useResizeHandler={true}/></div>;
+  // }
+
+  const renderDataChart = (type) => {
+    const yData = [type[3], type[2], type[1], type[0]];
+    const colors = yData.map(v => v >= 0 ? '#004226ff' : '#b22222');
+  
+    const plotData = [{
+      y: yData,
+      marker: { color: colors },
+      type: 'bar',
+      showlegend: false,
+      hoverinfo: 'y',
+      width: .75
+    }];
+  
+    const layout = {
+      margin: { t: 0, b: 0, l: 0, r: 0 },
+      xaxis: { visible: false },
+      yaxis: {
+        visible: false,
+        autorange: true,
+      },  
+      autosize: true,
+      paper_bgcolor: 'transparent',
+      plot_bgcolor: 'transparent',
+    };  
+  
+    return (
+      <div className='tinyChart'>
+        <Plot 
+          data={plotData} 
+          layout={layout} 
+          config={{ displayModeBar: false, staticPlot: true, responsive: true }} 
+          style={{ width: '100%', height: '100%' }} 
+          useResizeHandler={true}
+        />
+      </div>
+    );
+  };
+  
+  const renderFinancialDataTable = () => {
+    // Sample data - you can replace these with actual data from your API
+    const tableData = [
+      {
+        label: 'Revenue',
+        data: total_revenue_yearly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Profit',
+        data: [40000000, 50000000, 40000000, 50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Mullah', // Replace with actual metric name
+        data: [40000000, 50000000, 40000000, 50000000], // Replace with actual data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      }
+    ];
+  
+    return (
+      <div className='faqList'>
+        <h2 className="FAQTitle1">
+          Financial Data for {longName}
+        </h2>
+        <hr />
+        <h2 className='clarify'>*All values USD {dataDividerVerbose}</h2>
+        
+        <table className='stockDataTable'>
+          <thead>
+            <tr>
+              <th className='topOfTable'>Fiscal Year</th>
+              <th className='topOfTable'>{Math.floor(time_yearly[0]) - 3}</th>
+              <th className='topOfTable'>{Math.floor(time_yearly[0]) - 2}</th>
+              <th className='topOfTable'>{Math.floor(time_yearly[0]) - 1}</th>
+              <th className='topOfTable'>{time_yearly[0]}</th>
+              <th className='tableCell'>4-Year Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row, index) => (
+              <tr key={index}>
+                <th className='leftsideTable'>{row.label}</th>
+                <td>{row.formatValue(row.data[3])}</td>
+                <td>{row.formatValue(row.data[2])}</td>
+                <td>{row.formatValue(row.data[1])}</td>
+                <td>{row.formatValue(row.data[0])}</td>
+                <td className='tableCell'>{renderDataChart(row.data)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        
+        <h1>{total_revenue_yearly}</h1>
+      </div>
+    );
+  };
+
   const renderChart = () => {
     if (error || !close.length || exchangeName === "" || longName === "") {
       return <h2 className="fillerSpace"> </h2>;
@@ -264,38 +402,56 @@ function StockScreen() {
         <h2 className="loading">Loading...</h2>
       )}
       <div>
-        {error === null && quoteType === "EQUITY" ? (
+        {error === null && quoteType === "EQUITY" && !(exchangeName === "" || longName === "") ? (
           <>
             <Divider />
               <div className='faqList'>
               <h2 className="FAQTitle1">
                 Financial Data for {longName}
               </h2>
-              <table border="1">
-              <thead>
-                <tr>
-                  <th>Year</th>
-                  <th>Revenue</th>
-                  <th>Profit</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>2023</td>
-                  <td>$500M</td>
-                  <td>$50M</td>
-                </tr>
-                <tr>
-                  <td>2022</td>
-                  <td>$450M</td>
-                  <td>$40M</td>
-                </tr>
-              </tbody>
-            </table>
-            <img src="VA AI Logo.svg" alt="BrandLogo" className="AILogo" />
+              <hr></hr>
+              <h2 className='clarify'>*All values USD {dataDividerVerbose}</h2>
+              <table className='stockDataTable'>
+                <thead>
+                  <tr>
+                    <th className='topOfTable'>Fiscal Year</th>
+                    <th className='topOfTable'>{Math.floor(time_yearly[0]) - 3}</th>
+                    <th className='topOfTable'>{Math.floor(time_yearly[0]) - 2}</th>
+                    <th className='topOfTable'>{Math.floor(time_yearly[0]) - 1}</th>
+                    <th className='topOfTable'>{time_yearly[0]}</th>
+                    <th className='tableCell'>4-Year Trend</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th className='leftsideTable'>Revenue</th>
+                    <td>{Number.isFinite(total_revenue_yearly[3] / dataDivider) ? Math.round(total_revenue_yearly[3] / dataDivider).toLocaleString() : '-'}</td>
+                    <td>{Number.isFinite(total_revenue_yearly[3] / dataDivider) ? Math.round(total_revenue_yearly[2] / dataDivider).toLocaleString() : '-'}</td>
+                    <td>{Number.isFinite(total_revenue_yearly[3] / dataDivider) ? Math.round(total_revenue_yearly[1] / dataDivider).toLocaleString() : '-'}</td>
+                    <td>{Number.isFinite(total_revenue_yearly[3] / dataDivider) ? Math.round(total_revenue_yearly[0] / dataDivider).toLocaleString() : '-'}</td>
+                    <td className='tableCell'>{renderDataChart(total_revenue_yearly)}</td>
+                  </tr>
+                  <tr>
+                    <th>Profit</th>
+                    <td>$50M</td>
+                    <td>$40M</td>
+                    <td>$50M</td>
+                    <td>$40M</td>
+                    <td>CHART</td>
+                  </tr>
+                  <tr>
+                    <th>Mullah</th>
+                    <td>$50M</td>
+                    <td>$40M</td>
+                    <td>$50M</td>
+                    <td>$40M</td>
+                    <td>CHART</td>
+                  </tr>
+                </tbody>
+              </table>
             <h1>{total_revenue_yearly}</h1>
-            <h1>{time_yearly}</h1>
             </div>
+            {renderFinancialDataTable()}
           </>
         ) : null}
       </div>

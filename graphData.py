@@ -158,7 +158,7 @@ def get_all_time_data(ticker):
             annual_income = annual_income.T
 
             time_yearly = []
-            for item in annual_income["Normalized EBITDA"].index:
+            for item in annual_income["Total Revenue"].index:
                 time_yearly.append(item.strftime("%Y"))
 
             def getData(name, target_list):

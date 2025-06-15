@@ -692,6 +692,70 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
 
+.stockDataTable {
+  width: 100%;
+  font-size: 2vw;
+}
 
+.clarify {
+  text-align: right;
+  font-size: 1vw;
+}
+/* 
+.stockDataTable {
+  
+} */
+
+.stockDataTable th,
+.stockDataTable td {
+  border: .2vw solid #a8a87f;
+  padding: 1vw;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Remove outer borders */
+.stockDataTable tr:first-child th {
+  border-top: none;
+}
+
+.stockDataTable tr:last-child td,
+.stockDataTable tr:last-child th {
+  border-bottom: none;
+}
+
+.stockDataTable th:first-child,
+.stockDataTable td:first-child {
+  border-left: none;
+}
+
+.stockDataTable th:last-child,
+.stockDataTable td:last-child {
+  border-right: none;
+  overflow: hidden !important;     /* prevent overflow */
+  box-sizing: border-box !important;
+}
+
+.leftsideTable {
+  border-top: .2vw solid #a8a87f !important;
+}
+
+.tinyChart {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tableCell {
+  height: 40px; /* or whatever fixed/responsive height you want */
+  padding: 0;
+  overflow: hidden;
+  width: 15vw; 
 }
