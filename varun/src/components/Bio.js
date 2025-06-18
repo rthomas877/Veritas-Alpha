@@ -15,7 +15,7 @@ function Bio() {
                 </h2>
                 <br></br>
                 <div className="brandImages">
-                    <a href="https://drive.google.com/file/d/1N175zbnC6X147-v4m93rEc4X5pCTPPfE/view?usp=sharing" target="_blank" rel="noreferrer">
+                    <a href="https://drive.google.com/file/d/1dk9UslyjLzrPLmbDRDUXi8O3pf0Bl1q0/view?usp=sharing" target="_blank" rel="noreferrer">
                         <img src="/pdf.webp" alt="BrandLogo" className="BrandLogo" />
                     </a>
                     <a href="https://www.linkedin.com/in/ryan-thomas-807585260/" target="_blank" rel="noreferrer">

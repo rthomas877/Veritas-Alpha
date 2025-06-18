@@ -25,6 +25,8 @@ function StockScreen() {
   const { search } = useLocation();
   const navigate = useNavigate();
   let candlestick = useRef(true); // to keep candlestick states across states
+  const searched = useRef(new URLSearchParams(search).get('q'));
+
   
   // Extract query parameters
   const query = new URLSearchParams(search).get('q');
@@ -34,7 +36,61 @@ function StockScreen() {
   const { 
     dates, open, high, low, close, price, symbol, exchangeName, 
     longName, prevClose, error, loading, timeR, quoteType, total_revenue_yearly,
-    time_yearly
+    time_yearly, total_cogs_yearly, total_gross_profit_yearly,
+    total_gross_margin_yearly,
+    total_ebit_yearly,
+    total_operating_expenses_yearly,
+    total_ebit_margin_yearly,
+    total_ebitda_yearly,
+    total_ebitda_margin_yearly,
+    total_pretax_income_yearly,
+    total_net_income_yearly,
+    total_net_profit_margin_yearly,
+    total_diluted_eps_yearly,
+    total_revenue_quarterly,
+    total_cogs_quarterly,
+    total_gross_profit_quarterly,
+    total_gross_margin_quarterly,
+    total_ebit_quarterly,
+    total_operating_expenses_quarterly,
+    total_ebit_margin_quarterly,
+    total_ebitda_quarterly,
+    total_ebitda_margin_quarterly,
+    total_pretax_income_quarterly,
+    total_net_income_quarterly,
+    total_net_profit_margin_quarterly,
+    total_diluted_eps_quarterly,
+    time_quarterly,
+    total_working_capital_yearly,
+    total_current_ratio_yearly,
+    total_quick_ratio_yearly,
+    total_cash_ratio_yearly,
+    total_solvency_ratio_yearly,
+    total_de_ratio_yearly,
+    total_capitalization_ratio_yearly,
+    total_equity_ratio_yearly,
+    total_book_value_share_yearly,
+    total_tangible_book_value_share_yearly,
+    total_asset_turnover_ratio_yearly,
+    total_inventory_turnover_yearly,
+    total_total_assets_yearly,
+    total_total_liabilities_yearly,
+    total_shareholder_equity_yearly,
+    total_working_capital_quarterly,
+    total_current_ratio_quarterly,
+    total_quick_ratio_quarterly,
+    total_cash_ratio_quarterly,
+    total_solvency_ratio_quarterly,
+    total_de_ratio_quarterly,
+    total_capitalization_ratio_quarterly,
+    total_equity_ratio_quarterly,
+    total_book_value_share_quarterly,
+    total_tangible_book_value_share_quarterly,
+    total_asset_turnover_ratio_quarterly,
+    total_inventory_turnover_quarterly,
+    total_total_assets_quarterly,
+    total_total_liabilities_quarterly,
+    total_shareholder_equity_quarterly,
   } = GetGraphData({ ticker: query, time: timeRange });
   
   // Component state
@@ -88,6 +144,15 @@ function StockScreen() {
         : "Veritas Alpha | No Results";
       setShowContent(true);
 
+      if (query !== searched.current) {
+        searched.current = query;
+        setIncomeStatement(true)
+        setBalanceSheet(false)
+        setCashFlow(false)
+        setYearlyData(true)
+        setQuarterlyData(false)  
+      }
+
       if (quoteType === "EQUITY") {
         if (total_revenue_yearly[3] > 10000000000) {
           setDataDivider(1000000)
@@ -139,6 +204,78 @@ function StockScreen() {
           </button>
         </div>
       )}
+    </div>
+  );
+
+  const [incomeStatement, setIncomeStatement] = useState(true);
+  const [balanceSheet, setBalanceSheet] = useState(false);
+  const [cashFlow, setCashFlow] = useState(false);
+
+  const [yearlyData, setYearlyData] = useState(true);
+  const [quarterlyData, setQuarterlyData] = useState(false);
+
+const handleDocTypeI = () => {
+  setIncomeStatement(true)
+  setBalanceSheet(false)
+  setCashFlow(false)
+}
+
+const handleDocTypeB = () => {
+  setIncomeStatement(false)
+  setBalanceSheet(true)
+  setCashFlow(false)
+}
+
+const handleDocTypeC = () => {
+  setIncomeStatement(false)
+  setBalanceSheet(false)
+  setCashFlow(true)
+}
+
+const handleYearly = () => {
+  setYearlyData(true)
+  setQuarterlyData(false)
+}
+
+const handleQuarterly = () => {
+  setYearlyData(false)
+  setQuarterlyData(true)
+}
+
+  const renderDataTypeButtons = () => (
+    <div className="timeButtonsData">
+      <button
+        className={incomeStatement ? 'timeRangeButtonClicked' : 'timeRangeButton'}
+        onClick={() => handleDocTypeI(true)}
+      >
+        Income Statement
+      </button>
+      <button
+        className={balanceSheet ? 'graphTypeButtonClicked' : 'graphTypeButton'}
+        onClick={() => handleDocTypeB(true)}
+      >
+        Balance Sheet
+      </button>
+      <button
+        className={cashFlow ? 'graphTypeButtonClicked' : 'graphTypeButton'}
+        onClick={() => handleDocTypeC(true)}
+      >
+        Cash Flow
+      </button>
+      <div className="rightButtonsData">
+        <button
+          className={yearlyData ? 'graphTypeButtonClicked' : 'graphTypeButton'}
+          onClick={() => handleYearly(true)}
+        >
+          Yearly
+        </button>
+        <button
+          className={quarterlyData ? 'graphTypeButtonClicked' : 'graphTypeButton'}
+          onClick={() => handleQuarterly(false)}
+        >
+          Quarterly
+        </button>
+      </div>
     </div>
   );
   
@@ -260,7 +397,7 @@ function StockScreen() {
     );
   };
   
-  const renderFinancialDataTable = () => {
+  const renderFinancialDataTableIncomeYearly = () => {
     // Sample data - you can replace these with actual data from your API
     const tableData = [
       {
@@ -269,30 +406,69 @@ function StockScreen() {
         formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
       },
       {
+        label: 'COGS',
+        data: total_cogs_yearly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Gross Profit',
+        data: total_gross_profit_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Gross Margin',
+        data: total_gross_margin_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? `${(value * 100).toFixed(1)}%` : '-'
+      },
+      {
+        label: 'Operating Expenses',
+        data: total_operating_expenses_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'EBIT',
+        data: total_ebit_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'EBIT Margin',
+        data: total_ebit_margin_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? `${(value * 100).toFixed(1)}%` : '-'
+      },
+      {
         label: 'EBITDA',
-        data: total_revenue_yearly,
+        data: total_ebitda_yearly, // Replace with actual profit data
         formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
       },
       {
-        label: 'Profit',
-        data: [-40000000, 50000000, -40000000, 50000000], // Replace with actual profit data
+        label: 'EBITDA Margin',
+        data: total_ebitda_margin_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? `${(value * 100).toFixed(1)}%` : '-'
+      },
+      {
+        label: 'Pre-Tax Income', // Replace with actual metric name
+        data: total_pretax_income_yearly, // Replace with actual data
         formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
       },
       {
-        label: 'Mullah', // Replace with actual metric name
-        data: [40000000, 50000000, 40000000, 50000000], // Replace with actual data
+        label: 'Net Income', // Replace with actual metric name
+        data: total_net_income_yearly, // Replace with actual data
         formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
-      }
+      },
+      {
+        label: 'Net Profit Margin', // Replace with actual metric name
+        data: total_net_profit_margin_yearly, // Replace with actual data
+        formatValue: (value) => Number.isFinite(value) ? `${(value * 100).toFixed(1)}%` : '-'
+      },
+      {
+        label: 'Net EPS (Diluted)', // Replace with actual metric name
+        data: total_diluted_eps_yearly, // Replace with actual data
+        formatValue: (value) => Number.isFinite(value) ? value : '-'
+      },
     ];
   
     return (
-      <div className='faqList'>
-        <h2 className="FAQTitle1">
-          Financial Data for {longName}
-        </h2>
-        <hr />
-        <h2 className='clarify'>*All values USD {dataDividerVerbose}</h2>
-        
+      <div>
         <table className='stockDataTable'>
           <thead>
             <tr>
@@ -317,9 +493,547 @@ function StockScreen() {
             ))}
           </tbody>
         </table>
-        
-        <h1>{total_revenue_yearly}</h1>
       </div>
+    );
+  };
+
+  const renderFinancialDataTableCashFlowYearly = () => {
+    // Sample data - you can replace these with actual data from your API
+    const tableData = [
+      {
+        label: 'Operating Cash Flow',
+        data: total_revenue_yearly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Free Cash Flow',
+        data: total_cogs_yearly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'FCF Margin',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Cash Flow Margin', // Replace with actual metric name
+        data: [40000000, 50000000, 40000000, 50000000], // Replace with actual data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Cash Flow to Net Income',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'CapEx Ratio',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Reinvestment Ratio',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Dividend Coverage (Cash)',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'CFO to Debt',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Cash Interest Coverage',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Cash Return on Assets',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Cash Return on Equity',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Cash Conversion Ratio',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'CFO Volatility',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Free Cash Flow to Equity',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+    ];
+  
+    return (
+      <>
+        <table className='stockDataTable'>
+          <thead>
+            <tr>
+              <th className='topOfTable'>Fiscal Year</th>
+              <th className='topOfTable'>{Math.floor(time_yearly[0]) - 3}</th>
+              <th className='topOfTable'>{Math.floor(time_yearly[0]) - 2}</th>
+              <th className='topOfTable'>{Math.floor(time_yearly[0]) - 1}</th>
+              <th className='topOfTable'>{time_yearly[0]}</th>
+              <th className='tableCell'>4-Year Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row, index) => (
+              <tr key={index}>
+                <th className='leftsideTable'>{row.label}</th>
+                <td>{row.formatValue(row.data[3])}</td>
+                <td>{row.formatValue(row.data[2])}</td>
+                <td>{row.formatValue(row.data[1])}</td>
+                <td>{row.formatValue(row.data[0])}</td>
+                <td className='tableCell'>{renderDataChart(row.data)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    );
+  };
+
+  const renderFinancialDataTableBalanceSheetYearly = () => {
+    // Sample data - you can replace these with actual data from your API
+    const tableData = [
+      {
+        label: 'Working Capital',
+        data: total_working_capital_yearly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Total Assets',
+        data: total_total_assets_yearly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Total Liabilities',
+        data: total_total_liabilities_yearly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Total Equity',
+        data: total_shareholder_equity_yearly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Current Ratio',
+        data: total_current_ratio_yearly,
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Quick Ratio',
+        data: total_quick_ratio_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Cash Ratio', // Replace with actual metric name
+        data: total_cash_ratio_yearly, // Replace with actual data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Solvency Ratio',
+        data: total_solvency_ratio_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'D/E Ratio',
+        data: total_de_ratio_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Capitalization Ratio',
+        data: total_capitalization_ratio_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Equity Ratio',
+        data: total_equity_ratio_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Book Value / Share',
+        data: total_book_value_share_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Tangible Book Value / Share',
+        data: total_tangible_book_value_share_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Asset Turnover Ratio',
+        data: total_asset_turnover_ratio_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Inventory Turnover',
+        data: total_inventory_turnover_yearly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+    ];
+  
+    return (
+      <>
+        <table className='stockDataTable'>
+          <thead>
+            <tr>
+              <th className='topOfTable'>Fiscal Year</th>
+              <th className='topOfTable'>{Math.floor(time_yearly[0]) - 3}</th>
+              <th className='topOfTable'>{Math.floor(time_yearly[0]) - 2}</th>
+              <th className='topOfTable'>{Math.floor(time_yearly[0]) - 1}</th>
+              <th className='topOfTable'>{time_yearly[0]}</th>
+              <th className='tableCell'>4-Year Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row, index) => (
+              <tr key={index}>
+                <th className='leftsideTable'>{row.label}</th>
+                <td>{row.formatValue(row.data[3])}</td>
+                <td>{row.formatValue(row.data[2])}</td>
+                <td>{row.formatValue(row.data[1])}</td>
+                <td>{row.formatValue(row.data[0])}</td>
+                <td className='tableCell'>{renderDataChart(row.data)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    );
+  };
+
+  const renderFinancialDataTableIncomeQuarterly = () => {
+    // Sample data - you can replace these with actual data from your API
+    const tableData = [
+      {
+        label: 'Revenue',
+        data: total_revenue_quarterly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'COGS',
+        data: total_cogs_quarterly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Gross Profit',
+        data: total_gross_profit_quarterly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Gross Margin',
+        data: total_gross_margin_quarterly,
+        formatValue: (value) => Number.isFinite(value) ? `${(value * 100).toFixed(1)}%` : '-'
+      },
+      {
+        label: 'Operating Expenses',
+        data: total_operating_expenses_quarterly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'EBIT',
+        data: total_ebit_quarterly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'EBIT Margin',
+        data: total_ebit_margin_quarterly,
+        formatValue: (value) => Number.isFinite(value) ? `${(value * 100).toFixed(1)}%` : '-'
+      },
+      {
+        label: 'EBITDA',
+        data: total_ebitda_quarterly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'EBITDA Margin',
+        data: total_ebitda_margin_quarterly,
+        formatValue: (value) => Number.isFinite(value) ? `${(value * 100).toFixed(1)}%` : '-'
+      },
+      {
+        label: 'Pre-Tax Income',
+        data: total_pretax_income_quarterly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Net Income',
+        data: total_net_income_quarterly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Net Profit Margin',
+        data: total_net_profit_margin_quarterly,
+        formatValue: (value) => Number.isFinite(value) ? `${(value * 100).toFixed(1)}%` : '-'
+      },
+      {
+        label: 'Net EPS (Diluted)',
+        data: total_diluted_eps_quarterly,
+        formatValue: (value) => Number.isFinite(value) ? value : '-'
+      },
+    ];
+  
+    return (
+      <div>
+        <table className='stockDataTable'>
+          <thead>
+            <tr>
+              <th className='topOfTable'>Quarter</th>
+              <th className='topOfTable'>{time_quarterly[3]}</th>
+              <th className='topOfTable'>{time_quarterly[2]}</th>
+              <th className='topOfTable'>{time_quarterly[1]}</th>
+              <th className='topOfTable'>{time_quarterly[0]}</th>
+              <th className='tableCell'>4-Quarter Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row, index) => (
+              <tr key={index}>
+                <th className='leftsideTable'>{row.label}</th>
+                <td>{row.formatValue(row.data[3])}</td>
+                <td>{row.formatValue(row.data[2])}</td>
+                <td>{row.formatValue(row.data[1])}</td>
+                <td>{row.formatValue(row.data[0])}</td>
+                <td className='tableCell'>{renderDataChart(row.data)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  };
+
+  const renderFinancialDataTableCashFlowQuarterly = () => {
+    // Sample data - you can replace these with actual data from your API
+    const tableData = [
+      {
+        label: 'Operating Cash Flow',
+        data: total_revenue_yearly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Free Cash Flow',
+        data: total_cogs_yearly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'FCF Margin',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Cash Flow Margin', // Replace with actual metric name
+        data: [40000000, 50000000, 40000000, 50000000], // Replace with actual data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Cash Flow to Net Income',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'CapEx Ratio',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Reinvestment Ratio',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Dividend Coverage (Cash)',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'CFO to Debt',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Cash Interest Coverage',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Cash Return on Assets',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Cash Return on Equity',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Cash Conversion Ratio',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'CFO Volatility',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Free Cash Flow to Equity',
+        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+    ];
+  
+    return (
+      <>
+        <table className='stockDataTable'>
+          <thead>
+            <tr>
+              <th className='topOfTable'>Fiscal Year</th>
+              <th className='topOfTable'>{time_quarterly[3]}</th>
+              <th className='topOfTable'>{time_quarterly[2]}</th>
+              <th className='topOfTable'>{time_quarterly[1]}</th>
+              <th className='topOfTable'>{time_quarterly[0]}</th>
+              <th className='tableCell'>4-Year Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row, index) => (
+              <tr key={index}>
+                <th className='leftsideTable'>{row.label}</th>
+                <td>{row.formatValue(row.data[3])}</td>
+                <td>{row.formatValue(row.data[2])}</td>
+                <td>{row.formatValue(row.data[1])}</td>
+                <td>{row.formatValue(row.data[0])}</td>
+                <td className='tableCell'>{renderDataChart(row.data)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    );
+  };
+
+  const renderFinancialDataTableBalanceSheetQuarterly = () => {
+    // Sample data - you can replace these with actual data from your API
+    const tableData = [
+      {
+        label: 'Working Capital',
+        data: total_working_capital_quarterly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Total Assets',
+        data: total_total_assets_quarterly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Total Liabilities',
+        data: total_total_liabilities_quarterly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Total Equity',
+        data: total_shareholder_equity_quarterly,
+        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+      },
+      {
+        label: 'Current Ratio',
+        data: total_current_ratio_quarterly,
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Quick Ratio',
+        data: total_quick_ratio_quarterly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Cash Ratio', // Replace with actual metric name
+        data: total_cash_ratio_quarterly, // Replace with actual data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Solvency Ratio',
+        data: total_solvency_ratio_quarterly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'D/E Ratio',
+        data: total_de_ratio_quarterly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Capitalization Ratio',
+        data: total_capitalization_ratio_quarterly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Equity Ratio',
+        data: total_equity_ratio_quarterly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Book Value / Share',
+        data: total_book_value_share_quarterly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Tangible Book Value / Share',
+        data: total_tangible_book_value_share_quarterly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Asset Turnover Ratio',
+        data: total_asset_turnover_ratio_quarterly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+      {
+        label: 'Inventory Turnover',
+        data: total_inventory_turnover_quarterly, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
+      },
+    ];
+  
+    return (
+      <>
+        <table className='stockDataTable'>
+          <thead>
+            <tr>
+              <th className='topOfTable'>Fiscal Year</th>
+              <th className='topOfTable'>{time_quarterly[3]}</th>
+              <th className='topOfTable'>{time_quarterly[2]}</th>
+              <th className='topOfTable'>{time_quarterly[1]}</th>
+              <th className='topOfTable'>{time_quarterly[0]}</th>
+              <th className='tableCell'>4-Year Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((row, index) => (
+              <tr key={index}>
+                <th className='leftsideTable'>{row.label}</th>
+                <td>{row.formatValue(row.data[3])}</td>
+                <td>{row.formatValue(row.data[2])}</td>
+                <td>{row.formatValue(row.data[1])}</td>
+                <td>{row.formatValue(row.data[0])}</td>
+                <td className='tableCell'>{renderDataChart(row.data)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
     );
   };
 
@@ -410,7 +1124,45 @@ function StockScreen() {
         {error === null && quoteType === "EQUITY" && !(exchangeName === "" || longName === "") ? (
           <>
             <Divider />
-            {renderFinancialDataTable()}
+            <div className='faqList'>
+              <h2 className="FAQTitle1">
+                Financial Data for {longName}
+                <img src='VA AI Logo.svg' className='AILogo' alt=''></img>
+              </h2>
+              <hr />
+              <h2 className='clarify'>*Values in USD {dataDividerVerbose}</h2>
+              {renderDataTypeButtons()}
+              {incomeStatement && yearlyData && (
+                <div>
+                  {renderFinancialDataTableIncomeYearly()}
+                </div>
+              )}
+              {balanceSheet && yearlyData && (
+                <div>
+                  {renderFinancialDataTableBalanceSheetYearly()}
+                </div>
+              )}
+              {cashFlow && yearlyData && (
+                <div>
+                  {renderFinancialDataTableCashFlowYearly()}
+                </div>
+              )}
+              {incomeStatement && quarterlyData && (
+                <div>
+                  {renderFinancialDataTableIncomeQuarterly()}
+                </div>
+              )}
+              {balanceSheet && quarterlyData && (
+                <div>
+                  {renderFinancialDataTableBalanceSheetQuarterly()}
+                </div>
+              )}
+              {cashFlow && quarterlyData && (
+                <div>
+                  {renderFinancialDataTableCashFlowQuarterly()}
+                </div>
+              )}
+            </div>
           </>
         ) : null}
       </div>

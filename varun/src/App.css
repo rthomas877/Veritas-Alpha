@@ -583,10 +583,22 @@ body {
   align-items: center;
 }
 
+.timeButtonsData {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .rightButtons {
   margin-left: auto; /* pushes this container to the right */
   display: flex;
   margin-right: 2vw;
+}
+
+.rightButtonsData {
+  margin-left: auto; /* pushes this container to the right */
+  display: flex;
+  margin-right: 0vw;
 }
 
 .graphTypeButton {
@@ -696,7 +708,7 @@ body {
 
 .stockDataTable {
   width: 100%;
-  font-size: 2vw;
+  font-size: 1.65vw;
 }
 
 .clarify {
