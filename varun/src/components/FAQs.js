@@ -2,6 +2,8 @@ import Header from './Header';
 import Footer from './Footer';
 import QuestionList from './QuestionsList';
 import React, { useEffect } from 'react';
+import HeaderSignedIn from './HeaderSignedIn';
+
 
 
 function FAQs() {    

@@ -5,6 +5,7 @@ import MainSearchBar from './MainSearchBar';
 import Footer from './Footer';
 import React, { useEffect } from 'react';
 import Divider from './Divider';
+import HeaderSignedIn from './HeaderSignedIn';
 
 function Home() {  
   
@@ -15,6 +16,7 @@ function Home() {
   return (
     <div className='home'> 
       <Header /> {/* Ensure Header is used properly */}
+      {/* <HeaderSignedIn /> */}
       <ChartDashboard />
       <Break />
       <MainSearchBar />

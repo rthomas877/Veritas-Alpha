@@ -5,6 +5,8 @@ import Footer from './Footer';
 import Bio from './Bio';
 import React, { useEffect } from 'react';
 import Divider from './Divider';
+import HeaderSignedIn from './HeaderSignedIn';
+
 
 function About() {    
 

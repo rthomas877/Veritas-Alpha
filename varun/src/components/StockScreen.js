@@ -6,6 +6,8 @@ import Footer from './Footer';
 import LightWeightSB from './LightWeightSB';
 import GetGraphData from './GetGraphData';
 import Divider from './Divider';
+import HeaderSignedIn from './HeaderSignedIn';
+
 
 const TIME_RANGES = {
   '1d': { label: '1D', displayName: 'today', candlestick: false },
@@ -91,6 +93,32 @@ function StockScreen() {
     total_total_assets_quarterly,
     total_total_liabilities_quarterly,
     total_shareholder_equity_quarterly,
+    operating_cash_flow_y,
+    free_cash_flow_y,
+    fcf_margin_y,
+    cashflow_margin_y,
+    cashflow_to_net_income_margin_y,
+    capEx_ratio_y,
+    reinvestment_ratio_y,
+    dividend_coverage_y,
+    cash_interest_cov_y,
+    cash_return_assets_y,
+    cash_return_equity_y,
+    cash_convert_ratio_y,
+    fcf_to_equity_y,
+    operating_cash_flow_q,
+    free_cash_flow_q,
+    fcf_margin_q,
+    cashflow_margin_q,
+    cashflow_to_net_income_margin_q,
+    capEx_ratio_q,
+    reinvestment_ratio_q,
+    dividend_coverage_q,
+    cash_interest_cov_q,
+    cash_return_assets_q,
+    cash_return_equity_q,
+    cash_convert_ratio_q,
+    fcf_to_equity_q,
   } = GetGraphData({ ticker: query, time: timeRange });
   
   // Component state
@@ -463,7 +491,7 @@ const handleQuarterly = () => {
       {
         label: 'Net EPS (Diluted)', // Replace with actual metric name
         data: total_diluted_eps_yearly, // Replace with actual data
-        formatValue: (value) => Number.isFinite(value) ? value : '-'
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
     ];
   
@@ -502,77 +530,67 @@ const handleQuarterly = () => {
     const tableData = [
       {
         label: 'Operating Cash Flow',
-        data: total_revenue_yearly,
+        data: operating_cash_flow_y,
         formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
       },
       {
         label: 'Free Cash Flow',
-        data: total_cogs_yearly,
+        data: free_cash_flow_y,
         formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
       },
       {
         label: 'FCF Margin',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: fcf_margin_y, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Cash Flow Margin', // Replace with actual metric name
-        data: [40000000, 50000000, 40000000, 50000000], // Replace with actual data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: cashflow_margin_y, // Replace with actual data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Cash Flow to Net Income',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: cashflow_to_net_income_margin_y, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'CapEx Ratio',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: capEx_ratio_y, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Reinvestment Ratio',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: reinvestment_ratio_y, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Dividend Coverage (Cash)',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
-      },
-      {
-        label: 'CFO to Debt',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: dividend_coverage_y, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Cash Interest Coverage',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: cash_interest_cov_y, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Cash Return on Assets',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: cash_return_assets_y, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Cash Return on Equity',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: cash_return_equity_y, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Cash Conversion Ratio',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
-      },
-      {
-        label: 'CFO Volatility',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: cash_convert_ratio_y, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Free Cash Flow to Equity',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        data: fcf_to_equity_y, // Replace with actual profit data
         formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
       },
     ];
@@ -783,7 +801,7 @@ const handleQuarterly = () => {
       {
         label: 'Net EPS (Diluted)',
         data: total_diluted_eps_quarterly,
-        formatValue: (value) => Number.isFinite(value) ? value : '-'
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
     ];
   
@@ -822,77 +840,67 @@ const handleQuarterly = () => {
     const tableData = [
       {
         label: 'Operating Cash Flow',
-        data: total_revenue_yearly,
+        data: operating_cash_flow_q,
         formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
       },
       {
         label: 'Free Cash Flow',
-        data: total_cogs_yearly,
+        data: free_cash_flow_q,
         formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
       },
       {
         label: 'FCF Margin',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: fcf_margin_q, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Cash Flow Margin', // Replace with actual metric name
-        data: [40000000, 50000000, 40000000, 50000000], // Replace with actual data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: cashflow_margin_q, // Replace with actual data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Cash Flow to Net Income',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: cashflow_to_net_income_margin_q, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'CapEx Ratio',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: capEx_ratio_q, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Reinvestment Ratio',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: reinvestment_ratio_q, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Dividend Coverage (Cash)',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
-      },
-      {
-        label: 'CFO to Debt',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: dividend_coverage_q, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Cash Interest Coverage',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: cash_interest_cov_q, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Cash Return on Assets',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: cash_return_assets_q, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Cash Return on Equity',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: cash_return_equity_q, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Cash Conversion Ratio',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
-      },
-      {
-        label: 'CFO Volatility',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
-        formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
+        data: cash_convert_ratio_q, // Replace with actual profit data
+        formatValue: (value) => Number.isFinite(value) ? value.toFixed(2) : '-'
       },
       {
         label: 'Free Cash Flow to Equity',
-        data: [-40000000, -50000000, -40000000, -50000000], // Replace with actual profit data
+        data: fcf_to_equity_q, // Replace with actual profit data
         formatValue: (value) => Number.isFinite(value / dataDivider) ? Math.round(value / dataDivider).toLocaleString() : '-'
       },
     ];
@@ -902,7 +910,7 @@ const handleQuarterly = () => {
         <table className='stockDataTable'>
           <thead>
             <tr>
-              <th className='topOfTable'>Fiscal Year</th>
+              <th className='topOfTable'>Quarter</th>
               <th className='topOfTable'>{time_quarterly[3]}</th>
               <th className='topOfTable'>{time_quarterly[2]}</th>
               <th className='topOfTable'>{time_quarterly[1]}</th>
@@ -1012,7 +1020,7 @@ const handleQuarterly = () => {
         <table className='stockDataTable'>
           <thead>
             <tr>
-              <th className='topOfTable'>Fiscal Year</th>
+              <th className='topOfTable'>Quarter</th>
               <th className='topOfTable'>{time_quarterly[3]}</th>
               <th className='topOfTable'>{time_quarterly[2]}</th>
               <th className='topOfTable'>{time_quarterly[1]}</th>
@@ -1127,7 +1135,7 @@ const handleQuarterly = () => {
             <div className='faqList'>
               <h2 className="FAQTitle1">
                 Financial Data for {longName}
-                <img src='VA AI Logo.svg' className='AILogo' alt=''></img>
+                {/* <img src='VA AI Logo.svg' className='AILogo' alt=''></img> */}
               </h2>
               <hr />
               <h2 className='clarify'>*Values in USD {dataDividerVerbose}</h2>

@@ -6,7 +6,9 @@ import About from './components/About';
 import FAQs from './components/FAQs';
 import StockScreen from './components/StockScreen';
 import Learn from './components/Learn';
-
+import Watchlist from './components/Watchlist';
+import Login from './components/Login';
+import Account from './components/Account';
 
 function App() {    
   return (
@@ -17,6 +19,9 @@ function App() {
         <Route path="/faq" element={<FAQs />} />
         <Route path="/stock" element={<StockScreen />} />
         <Route path="/learn" element={<Learn />} />
+        <Route path="/watchlist" element={<Watchlist />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
     </Router>
   );

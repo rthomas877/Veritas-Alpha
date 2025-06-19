@@ -1,50 +1,56 @@
 import yfinance as yf
 
-# Create the ticker object properly
-stock = yf.Ticker("o")  # Use a valid ticker symbol here
+# Create the ticker object
+stock = yf.Ticker("aapl")  # Use a valid ticker symbol here
 
-balance_sheet = stock.balance_sheet  # for annual
-# Or: balance_sheet = stock.quarterly_balance_sheet
+# Get the cash flow statement (annual)
+cash_flow = stock.cashflow  # Use stock.quarterly_cashflow for quarterly data
 
-fields = balance_sheet.index.tolist()
+# List the available fields
+fields = cash_flow.index.tolist()
 
 for field in fields:
     print(field)
 
 
-# Fetch annual income statement
-annual_income = stock.financials
-annual_income = annual_income.T
+# intangible_assets = balance_sheet.loc["Goodwill And Other Intangible Assets"]
+# print(intangible_assets)
 
-# # print(annual_income["Normalized EBITDA"]) 
+
+# # Fetch annual income statement
+# annual_income = stock.financials
+# annual_income = annual_income.T
+
+
+# # # print(annual_income["Normalized EBITDA"]) 
+# # # for item in annual_income["Normalized EBITDA"].index:
+# # #     print(item.date())
+
+# # time_yearly = []
 # # for item in annual_income["Normalized EBITDA"].index:
-# #     print(item.date())
-
-# time_yearly = []
-# for item in annual_income["Normalized EBITDA"].index:
-#     time_yearly.append(item.strftime("%Y"))
-# print(time_yearly)
+# #     time_yearly.append(item.strftime("%Y"))
+# # print(time_yearly)
 
 # def getData(name, list):
-#     for item in annual_income[name]:
+#     for item in balance_sheet[name]:
 #         list.append(item)
 #     return list
 
 # total_revenue_yearly = []
-# total_revenue_yearly = getData("Diluted EPS", total_revenue_yearly)
+# total_revenue_yearly = getData("Tangible Book Value", total_revenue_yearly)
 # print(total_revenue_yearly)
 
-# ticker = yf.Ticker("GS")
-# print(ticker.financials.index.tolist())
+# # ticker = yf.Ticker("GS")
+# # print(ticker.financials.index.tolist())
 
 
-# print(annual_income["EBITDA"])  
-# print(annual_income["Total Revenue"])  
+# # print(annual_income["EBITDA"])  
+# # print(annual_income["Total Revenue"])  
 
-# annual_cash_flow = stock.cashflow
-# annual_cash_flow = annual_cash_flow.T
-# print(annual_cash_flow)
+# # annual_cash_flow = stock.cashflow
+# # annual_cash_flow = annual_cash_flow.T
+# # print(annual_cash_flow)
 
-# annual_balance_sheet = stock.balance_sheet
+# # annual_balance_sheet = stock.balance_sheet
 
-# print(annual_balance_sheet)
+# # print(annual_balance_sheet)

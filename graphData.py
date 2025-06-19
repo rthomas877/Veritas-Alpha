@@ -841,6 +841,293 @@ def get_all_time_data(ticker):
                 for i in range(4):
                     total_inventory_turnover_quarterly.append("N/A")    
 
+        if quoteType == "EQUITY":
+            # Fetch annual cash flow
+            annual_cash_flow = stock.cashflow
+            annual_cash_flow = annual_cash_flow.T  # Transpose to make it easier to iterate by year
+
+            def getData(name, target_list):
+                for item in annual_cash_flow[name]:
+                    if not math.isnan(item):
+                        target_list.append(float(item))
+                    else:
+                        target_list.append("None")
+                return target_list
+
+            operating_cash_flow_y = []
+            try:
+                operating_cash_flow_y = getData("Operating Cash Flow", operating_cash_flow_y)
+            except:
+                for i in range(4):
+                    operating_cash_flow_y.append("N/A")
+
+            free_cash_flow_y = []
+            try:
+                free_cash_flow_y = getData("Free Cash Flow", free_cash_flow_y)
+            except:
+                for i in range(4):
+                    free_cash_flow_y.append("N/A")
+
+            fcf_margin_y = []
+            try:
+                for i in range(4):
+                    fcf_margin_y.append(free_cash_flow_y[i] / total_revenue_yearly[i])
+            except:
+                for i in range(4):
+                    fcf_margin_y.append("N/A")   
+
+            cashflow_margin_y = []
+            try:
+                for i in range(4):
+                    cashflow_margin_y.append(operating_cash_flow_y[i] / total_revenue_yearly[i])
+            except:
+                for i in range(4):
+                    cashflow_margin_y.append("N/A") 
+
+            cashflow_to_net_income_margin_y = []
+            try:
+                for i in range(4):
+                    cashflow_to_net_income_margin_y.append(operating_cash_flow_y[i] / total_net_income_yearly[i])
+            except:
+                for i in range(4):
+                    cashflow_to_net_income_margin_y.append("N/A") 
+
+            capEx_y = []
+            try:
+                capEx_y = getData("Capital Expenditure", capEx_y)
+            except:
+                for i in range(4):
+                    capEx_y.append("N/A")
+
+            capEx_ratio_y = []
+            try:
+                for i in range(4):
+                    capEx_ratio_y.append(capEx_y[i] / operating_cash_flow_y[i])
+            except:
+                for i in range(4):
+                    capEx_ratio_y.append("N/A") 
+
+            common_stock_dividends_y = []
+            try:
+                common_stock_dividends_y = getData("Common Stock Dividend Paid", common_stock_dividends_y)
+            except:
+                for i in range(4):
+                    common_stock_dividends_y.append("N/A")
+
+            reinvestment_ratio_y = []
+            try:
+                for i in range(4):
+                    reinvestment_ratio_y.append(1 - (common_stock_dividends_y[i] / total_net_income_yearly[i]))
+            except:
+                for i in range(4):
+                    reinvestment_ratio_y.append("N/A") 
+
+            dividend_coverage_y = []
+            try:
+                for i in range(4):
+                    dividend_coverage_y.append(operating_cash_flow_y[i] / common_stock_dividends_y[i])
+            except:
+                for i in range(4):
+                    dividend_coverage_y.append("N/A") 
+
+            interest_paid_y = []
+            try:
+                interest_paid_y = getData("Interest Paid Supplemental Data", interest_paid_y)
+            except:
+                for i in range(4):
+                    interest_paid_y.append("N/A")
+
+            cash_interest_cov_y = []
+            try:
+                for i in range(4):
+                    cash_interest_cov_y.append(operating_cash_flow_y[i] / interest_paid_y[i])
+            except:
+                for i in range(4):
+                    cash_interest_cov_y.append("N/A") 
+
+            cash_return_assets_y = []
+            try:
+                for i in range(4):
+                    cash_return_assets_y.append(operating_cash_flow_y[i] / total_total_assets_yearly[i])
+            except:
+                for i in range(4):
+                    cash_return_assets_y.append("N/A") 
+            
+            cash_return_equity_y = []
+            try:
+                for i in range(4):
+                    cash_return_equity_y.append(operating_cash_flow_y[i] / total_shareholder_equity_yearly[i])
+            except:
+                for i in range(4):
+                    cash_return_equity_y.append("N/A") 
+
+            cash_convert_ratio_y = []
+            try:
+                for i in range(4):
+                    cash_convert_ratio_y.append(operating_cash_flow_y[i] / total_net_income_yearly[i])
+            except:
+                for i in range(4):
+                    cash_convert_ratio_y.append("N/A") 
+
+            net_borrowing_y = []
+            try:
+                net_borrowing_y = getData("Net Issuance Payments Of Debt", net_borrowing_y)
+            except:
+                for i in range(4):
+                    net_borrowing_y.append("N/A")
+
+            fcf_to_equity_y = []
+            try:
+                for i in range(4):
+                    fcf_to_equity_y.append(operating_cash_flow_y[i] - capEx_y[i] + net_borrowing_y[i])
+            except:
+                for i in range(4):
+                    fcf_to_equity_y.append("N/A") 
+
+        if quoteType == "EQUITY":
+            # Fetch quarterly cash flow
+            quarterly_cash_flow = stock.quarterly_cashflow
+            quarterly_cash_flow = quarterly_cash_flow.T  # Transpose to make it easier to iterate by quarter
+
+            def getData(name, target_list):
+                for item in quarterly_cash_flow[name]:
+                    if not math.isnan(item):
+                        target_list.append(float(item))
+                    else:
+                        target_list.append("None")
+                return target_list
+
+            operating_cash_flow_q = []
+            try:
+                operating_cash_flow_q = getData("Operating Cash Flow", operating_cash_flow_q)
+            except:
+                for i in range(4):
+                    operating_cash_flow_q.append("N/A")
+
+            free_cash_flow_q = []
+            try:
+                free_cash_flow_q = getData("Free Cash Flow", free_cash_flow_q)
+            except:
+                for i in range(4):
+                    free_cash_flow_q.append("N/A")
+
+            fcf_margin_q = []
+            try:
+                for i in range(4):
+                    fcf_margin_q.append(free_cash_flow_q[i] / total_revenue_quarterly[i])
+            except:
+                for i in range(4):
+                    fcf_margin_q.append("N/A")   
+
+            cashflow_margin_q = []
+            try:
+                for i in range(4):
+                    cashflow_margin_q.append(operating_cash_flow_q[i] / total_revenue_quarterly[i])
+            except:
+                for i in range(4):
+                    cashflow_margin_q.append("N/A") 
+
+            cashflow_to_net_income_margin_q = []
+            try:
+                for i in range(4):
+                    cashflow_to_net_income_margin_q.append(operating_cash_flow_q[i] / total_net_income_quarterly[i])
+            except:
+                for i in range(4):
+                    cashflow_to_net_income_margin_q.append("N/A") 
+
+            capEx_q = []
+            try:
+                capEx_q = getData("Capital Expenditure", capEx_q)
+            except:
+                for i in range(4):
+                    capEx_q.append("N/A")
+
+            capEx_ratio_q = []
+            try:
+                for i in range(4):
+                    capEx_ratio_q.append(capEx_q[i] / operating_cash_flow_q[i])
+            except:
+                for i in range(4):
+                    capEx_ratio_q.append("N/A") 
+
+            common_stock_dividends_q = []
+            try:
+                common_stock_dividends_q = getData("Common Stock Dividend Paid", common_stock_dividends_q)
+            except:
+                for i in range(4):
+                    common_stock_dividends_q.append("N/A")
+
+            reinvestment_ratio_q = []
+            try:
+                for i in range(4):
+                    reinvestment_ratio_q.append(1 - (common_stock_dividends_q[i] / total_net_income_quarterly[i]))
+            except:
+                for i in range(4):
+                    reinvestment_ratio_q.append("N/A") 
+
+            dividend_coverage_q = []
+            try:
+                for i in range(4):
+                    dividend_coverage_q.append(operating_cash_flow_q[i] / common_stock_dividends_q[i])
+            except:
+                for i in range(4):
+                    dividend_coverage_q.append("N/A") 
+
+            interest_paid_q = []
+            try:
+                interest_paid_q = getData("Interest Paid Supplemental Data", interest_paid_q)
+            except:
+                for i in range(4):
+                    interest_paid_q.append("N/A")
+
+            cash_interest_cov_q = []
+            try:
+                for i in range(4):
+                    cash_interest_cov_q.append(operating_cash_flow_q[i] / interest_paid_q[i])
+            except:
+                for i in range(4):
+                    cash_interest_cov_q.append("N/A") 
+
+            cash_return_assets_q = []
+            try:
+                for i in range(4):
+                    cash_return_assets_q.append(operating_cash_flow_q[i] / total_total_assets_quarterly[i])
+            except:
+                for i in range(4):
+                    cash_return_assets_q.append("N/A") 
+            
+            cash_return_equity_q = []
+            try:
+                for i in range(4):
+                    cash_return_equity_q.append(operating_cash_flow_q[i] / total_shareholder_equity_quarterly[i])
+            except:
+                for i in range(4):
+                    cash_return_equity_q.append("N/A") 
+
+            cash_convert_ratio_q = []
+            try:
+                for i in range(4):
+                    cash_convert_ratio_q.append(operating_cash_flow_q[i] / total_net_income_quarterly[i])
+            except:
+                for i in range(4):
+                    cash_convert_ratio_q.append("N/A") 
+
+            net_borrowing_q = []
+            try:
+                net_borrowing_q = getData("Net Issuance Payments Of Debt", net_borrowing_q)
+            except:
+                for i in range(4):
+                    net_borrowing_q.append("N/A")
+
+            fcf_to_equity_q = []
+            try:
+                for i in range(4):
+                    fcf_to_equity_q.append(operating_cash_flow_q[i] - capEx_q[i] + net_borrowing_q[i])
+            except:
+                for i in range(4):
+                    fcf_to_equity_q.append("N/A")
+
+
 
             return {
                 "time_yearly": time_yearly,
@@ -904,6 +1191,32 @@ def get_all_time_data(ticker):
                 "total_total_assets_quarterly": total_total_assets_quarterly,
                 "total_total_liabilities_quarterly": total_total_liabilities_quarterly,
                 "total_shareholder_equity_quarterly": total_shareholder_equity_quarterly,
+                "operating_cash_flow_y": operating_cash_flow_y,
+                "free_cash_flow_y": free_cash_flow_y,
+                "fcf_margin_y": fcf_margin_y,
+                "cashflow_margin_y": cashflow_margin_y,
+                "cashflow_to_net_income_margin_y": cashflow_to_net_income_margin_y,
+                "capEx_ratio_y": capEx_ratio_y,
+                "reinvestment_ratio_y": reinvestment_ratio_y,
+                "dividend_coverage_y": dividend_coverage_y,
+                "cash_interest_cov_y": cash_interest_cov_y,
+                "cash_return_assets_y": cash_return_assets_y,
+                "cash_return_equity_y": cash_return_equity_y,
+                "cash_convert_ratio_y": cash_convert_ratio_y,
+                "fcf_to_equity_y": fcf_to_equity_y,
+                "operating_cash_flow_q": operating_cash_flow_q,
+                "free_cash_flow_q": free_cash_flow_q,
+                "fcf_margin_q": fcf_margin_q,
+                "cashflow_margin_q": cashflow_margin_q,
+                "cashflow_to_net_income_margin_q": cashflow_to_net_income_margin_q,
+                "capEx_ratio_q": capEx_ratio_q,
+                "reinvestment_ratio_q": reinvestment_ratio_q,
+                "dividend_coverage_q": dividend_coverage_q,
+                "cash_interest_cov_q": cash_interest_cov_q,
+                "cash_return_assets_q": cash_return_assets_q,
+                "cash_return_equity_q": cash_return_equity_q,
+                "cash_convert_ratio_q": cash_convert_ratio_q,
+                "fcf_to_equity_q": fcf_to_equity_q,
                 "symbol": ticker.upper(),
                 "price": price,
                 "exchangeName": exchange_name,
