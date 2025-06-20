@@ -9,6 +9,7 @@ import Learn from './components/Learn';
 import Watchlist from './components/Watchlist';
 import Login from './components/Login';
 import Account from './components/Account';
+import CreateACC from './components/CreateACC';
 
 function App() {    
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/watchlist" element={<Watchlist />} />
         <Route path="/login" element={<Login />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/createACC" element={<CreateACC />} />
       </Routes>
     </Router>
   );

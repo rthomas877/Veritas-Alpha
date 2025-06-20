@@ -288,143 +288,143 @@ def get_all_time_data(ticker):
                     total_diluted_eps_yearly.append("N/A")
 
             
-            # Get Stock Financials (Quarterly)
-        if quoteType == "EQUITY":
+        #     # Get Stock Financials (Quarterly)
+        # if quoteType == "EQUITY":
 
-            # Fetch quarterly income statement
-            quarterly_income = stock.quarterly_financials
-            quarterly_income = quarterly_income.T
+        #     # Fetch quarterly income statement
+        #     quarterly_income = stock.quarterly_financials
+        #     quarterly_income = quarterly_income.T
 
-            time_quarterly = []
-            for item in quarterly_income["Total Revenue"].index:
-                quarter = ((item.month - 1) // 3) + 1
-                time_quarterly.append(f"{item.year}-Q{quarter}")  # Format as YYYY-Q1, YYYY-Q2, etc.
+        #     time_quarterly = []
+        #     for item in quarterly_income["Total Revenue"].index:
+        #         quarter = ((item.month - 1) // 3) + 1
+        #         time_quarterly.append(f"{item.year}-Q{quarter}")  # Format as YYYY-Q1, YYYY-Q2, etc.
 
-            def getData(name, target_list):
-                for item in quarterly_income[name]:
-                    if not (math.isnan(item)):
-                        target_list.append(float(item))
-                    else:
-                        target_list.append("None")
-                return target_list
+            # def getData(name, target_list):
+            #     for item in quarterly_income[name]:
+            #         if not (math.isnan(item)):
+            #             target_list.append(float(item))
+            #         else:
+            #             target_list.append("None")
+            #     return target_list
 
-            # Revenue
-            total_revenue_quarterly = []
-            try:
-                total_revenue_quarterly = getData("Total Revenue", total_revenue_quarterly)
-            except:
-                for i in range(4):  # Last 4 quarters
-                    total_revenue_quarterly.append("N/A")
+            # # Revenue
+            # total_revenue_quarterly = []
+            # try:
+            #     total_revenue_quarterly = getData("Total Revenue", total_revenue_quarterly)
+            # except:
+            #     for i in range(4):  # Last 4 quarters
+            #         total_revenue_quarterly.append("N/A")
 
-            # COGS
-            total_cogs_quarterly = []
-            try:
-                total_cogs_quarterly = getData("Cost Of Revenue", total_cogs_quarterly)
-            except:
-                for i in range(4):
-                    total_cogs_quarterly.append("N/A")
+            # # COGS
+            # total_cogs_quarterly = []
+            # try:
+            #     total_cogs_quarterly = getData("Cost Of Revenue", total_cogs_quarterly)
+            # except:
+            #     for i in range(4):
+            #         total_cogs_quarterly.append("N/A")
 
-            # Gross Profit
-            total_gross_profit_quarterly = []
-            try:
-                for i in range(4):
-                    total_gross_profit_quarterly.append(total_revenue_quarterly[i] - total_cogs_quarterly[i])
-            except:
-                for i in range(4):
-                    total_gross_profit_quarterly.append("N/A")
+            # # Gross Profit
+            # total_gross_profit_quarterly = []
+            # try:
+            #     for i in range(4):
+            #         total_gross_profit_quarterly.append(total_revenue_quarterly[i] - total_cogs_quarterly[i])
+            # except:
+            #     for i in range(4):
+            #         total_gross_profit_quarterly.append("N/A")
 
-            # Gross Margin
-            total_gross_margin_quarterly = []
-            try:
-                for i in range(4):
-                    total_gross_margin_quarterly.append(total_gross_profit_quarterly[i] / total_revenue_quarterly[i])
-            except:
-                for i in range(4):
-                    total_gross_margin_quarterly.append("N/A")
+            # # Gross Margin
+            # total_gross_margin_quarterly = []
+            # try:
+            #     for i in range(4):
+            #         total_gross_margin_quarterly.append(total_gross_profit_quarterly[i] / total_revenue_quarterly[i])
+            # except:
+            #     for i in range(4):
+            #         total_gross_margin_quarterly.append("N/A")
 
-            # EBIT (Operating Income)
-            total_ebit_quarterly = []
-            try:
-                total_ebit_quarterly = getData("Operating Income", total_ebit_quarterly)
-            except:
-                for i in range(4):
-                    total_ebit_quarterly.append("N/A")
+            # # EBIT (Operating Income)
+            # total_ebit_quarterly = []
+            # try:
+            #     total_ebit_quarterly = getData("Operating Income", total_ebit_quarterly)
+            # except:
+            #     for i in range(4):
+            #         total_ebit_quarterly.append("N/A")
 
-            # Operating Expense
-            total_operating_expenses_quarterly = []
-            try:
-                for i in range(4):
-                    total_operating_expenses_quarterly.append(total_revenue_quarterly[i] - total_ebit_quarterly[i])
-            except:
-                for i in range(4):
-                    total_operating_expenses_quarterly.append("N/A")
+            # # Operating Expense
+            # total_operating_expenses_quarterly = []
+            # try:
+            #     for i in range(4):
+            #         total_operating_expenses_quarterly.append(total_revenue_quarterly[i] - total_ebit_quarterly[i])
+            # except:
+            #     for i in range(4):
+            #         total_operating_expenses_quarterly.append("N/A")
 
-            # EBIT Margin
-            total_ebit_margin_quarterly = []
-            try:
-                for i in range(4):
-                    total_ebit_margin_quarterly.append(total_ebit_quarterly[i] / total_revenue_quarterly[i])
-            except:
-                for i in range(4):
-                    total_ebit_margin_quarterly.append("N/A")
+            # # EBIT Margin
+            # total_ebit_margin_quarterly = []
+            # try:
+            #     for i in range(4):
+            #         total_ebit_margin_quarterly.append(total_ebit_quarterly[i] / total_revenue_quarterly[i])
+            # except:
+            #     for i in range(4):
+            #         total_ebit_margin_quarterly.append("N/A")
 
-            # EBITDA
-            total_ebitda_quarterly = []
-            try:
-                total_ebitda_quarterly = getData("EBITDA", total_ebitda_quarterly)
-            except:
-                for i in range(4):
-                    total_ebitda_quarterly.append("N/A")
+            # # EBITDA
+            # total_ebitda_quarterly = []
+            # try:
+            #     total_ebitda_quarterly = getData("EBITDA", total_ebitda_quarterly)
+            # except:
+            #     for i in range(4):
+            #         total_ebitda_quarterly.append("N/A")
 
-            # EBITDA Margin
-            total_ebitda_margin_quarterly = []
-            try:
-                for i in range(4):
-                    total_ebitda_margin_quarterly.append(total_ebitda_quarterly[i] / total_revenue_quarterly[i])
-            except:
-                for i in range(4):
-                    total_ebitda_margin_quarterly.append("N/A")
+            # # EBITDA Margin
+            # total_ebitda_margin_quarterly = []
+            # try:
+            #     for i in range(4):
+            #         total_ebitda_margin_quarterly.append(total_ebitda_quarterly[i] / total_revenue_quarterly[i])
+            # except:
+            #     for i in range(4):
+            #         total_ebitda_margin_quarterly.append("N/A")
 
-            # Pretax Income
-            total_pretax_income_quarterly = []
-            try:
-                total_pretax_income_quarterly = getData("Pretax Income", total_pretax_income_quarterly)
-            except:
-                for i in range(4):
-                    total_pretax_income_quarterly.append("N/A")
+            # # Pretax Income
+            # total_pretax_income_quarterly = []
+            # try:
+            #     total_pretax_income_quarterly = getData("Pretax Income", total_pretax_income_quarterly)
+            # except:
+            #     for i in range(4):
+            #         total_pretax_income_quarterly.append("N/A")
 
-            # Tax provision
-            total_tax_provision_quarterly = []
-            try:
-                total_tax_provision_quarterly = getData("Tax Provision", total_tax_provision_quarterly)
-            except:
-                for i in range(4):
-                    total_tax_provision_quarterly.append("N/A")
+            # # Tax provision
+            # total_tax_provision_quarterly = []
+            # try:
+            #     total_tax_provision_quarterly = getData("Tax Provision", total_tax_provision_quarterly)
+            # except:
+            #     for i in range(4):
+            #         total_tax_provision_quarterly.append("N/A")
 
-            # net income
-            total_net_income_quarterly = []
-            try:
-                total_net_income_quarterly = getData("Net Income", total_net_income_quarterly)
-            except:
-                for i in range(4):
-                    total_net_income_quarterly.append("N/A")
+            # # net income
+            # total_net_income_quarterly = []
+            # try:
+            #     total_net_income_quarterly = getData("Net Income", total_net_income_quarterly)
+            # except:
+            #     for i in range(4):
+            #         total_net_income_quarterly.append("N/A")
 
-            # net profit margin
-            total_net_profit_margin_quarterly = []
-            try:
-                for i in range(4):
-                    total_net_profit_margin_quarterly.append(total_net_income_quarterly[i] / total_revenue_quarterly[i])
-            except:
-                for i in range(4):
-                    total_net_profit_margin_quarterly.append("N/A")
+            # # net profit margin
+            # total_net_profit_margin_quarterly = []
+            # try:
+            #     for i in range(4):
+            #         total_net_profit_margin_quarterly.append(total_net_income_quarterly[i] / total_revenue_quarterly[i])
+            # except:
+            #     for i in range(4):
+            #         total_net_profit_margin_quarterly.append("N/A")
 
-            # eps diluted
-            total_diluted_eps_quarterly = []
-            try:
-                total_diluted_eps_quarterly = getData("Diluted EPS", total_diluted_eps_quarterly)
-            except:
-                for i in range(4):
-                    total_diluted_eps_quarterly.append("N/A")
+            # # eps diluted
+            # total_diluted_eps_quarterly = []
+            # try:
+            #     total_diluted_eps_quarterly = getData("Diluted EPS", total_diluted_eps_quarterly)
+            # except:
+            #     for i in range(4):
+            #         total_diluted_eps_quarterly.append("N/A")
             
 
         if quoteType == "EQUITY":
@@ -634,212 +634,212 @@ def get_all_time_data(ticker):
                 for i in range(4):
                     total_inventory_turnover_yearly.append("N/A")
 
-        if quoteType == "EQUITY":
-            # Fetch quarterly balance sheet
-            quarterly_balance_sheet = stock.quarterly_balance_sheet
-            quarterly_balance_sheet = quarterly_balance_sheet.T
+        # if quoteType == "EQUITY":
+        #     # Fetch quarterly balance sheet
+        #     quarterly_balance_sheet = stock.quarterly_balance_sheet
+        #     quarterly_balance_sheet = quarterly_balance_sheet.T
 
-            def getData(name, target_list):
-                for item in quarterly_balance_sheet[name]:
-                    if not math.isnan(item):
-                        target_list.append(float(item))
-                    else:
-                        target_list.append("None")
-                return target_list
+        #     def getData(name, target_list):
+        #         for item in quarterly_balance_sheet[name]:
+        #             if not math.isnan(item):
+        #                 target_list.append(float(item))
+        #             else:
+        #                 target_list.append("None")
+        #         return target_list
             
-            total_working_capital_quarterly = []
-            try:
-                total_working_capital_quarterly = getData("Working Capital", total_working_capital_quarterly)
-            except:
-                for i in range(4):
-                    total_working_capital_quarterly.append("N/A")
+        #     total_working_capital_quarterly = []
+        #     try:
+        #         total_working_capital_quarterly = getData("Working Capital", total_working_capital_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_working_capital_quarterly.append("N/A")
             
-            total_current_assets_quarterly = []
-            try:
-                total_current_assets_quarterly = getData("Current Assets", total_current_assets_quarterly)
-            except:
-                for i in range(4):
-                    total_current_assets_quarterly.append("N/A")
+        #     total_current_assets_quarterly = []
+        #     try:
+        #         total_current_assets_quarterly = getData("Current Assets", total_current_assets_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_current_assets_quarterly.append("N/A")
 
-            total_current_liabilities_quarterly = []
-            try:
-                total_current_liabilities_quarterly = getData("Current Liabilities", total_current_liabilities_quarterly)
-            except:
-                for i in range(4):
-                    total_current_liabilities_quarterly.append("N/A")
+        #     total_current_liabilities_quarterly = []
+        #     try:
+        #         total_current_liabilities_quarterly = getData("Current Liabilities", total_current_liabilities_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_current_liabilities_quarterly.append("N/A")
 
-            total_current_ratio_quarterly = []
-            try:
-                for i in range(4):
-                    total_current_ratio_quarterly.append(total_current_assets_quarterly[i] / total_current_liabilities_quarterly[i])
-            except:
-                for i in range(4):
-                    total_current_ratio_quarterly.append("N/A")
+        #     total_current_ratio_quarterly = []
+        #     try:
+        #         for i in range(4):
+        #             total_current_ratio_quarterly.append(total_current_assets_quarterly[i] / total_current_liabilities_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             total_current_ratio_quarterly.append("N/A")
 
-            total_cash_equivalents_short_term_quarterly = []
-            try:
-                total_cash_equivalents_short_term_quarterly = getData("Cash Cash Equivalents And Short Term Investments", total_cash_equivalents_short_term_quarterly)
-            except:
-                for i in range(4):
-                    total_cash_equivalents_short_term_quarterly.append("N/A")
+        #     total_cash_equivalents_short_term_quarterly = []
+        #     try:
+        #         total_cash_equivalents_short_term_quarterly = getData("Cash Cash Equivalents And Short Term Investments", total_cash_equivalents_short_term_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_cash_equivalents_short_term_quarterly.append("N/A")
 
-            total_accounts_receivable_quarterly = []
-            try:
-                total_accounts_receivable_quarterly = getData("Accounts Receivable", total_accounts_receivable_quarterly)
-            except:
-                for i in range(4):
-                    total_accounts_receivable_quarterly.append("N/A")
+        #     total_accounts_receivable_quarterly = []
+        #     try:
+        #         total_accounts_receivable_quarterly = getData("Accounts Receivable", total_accounts_receivable_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_accounts_receivable_quarterly.append("N/A")
 
-            total_quick_ratio_quarterly = []
-            try:
-                for i in range(4):
-                    total_quick_ratio_quarterly.append((total_cash_equivalents_short_term_quarterly[i] + total_accounts_receivable_quarterly[i]) / total_current_liabilities_quarterly[i])
-            except:
-                for i in range(4):
-                    total_quick_ratio_quarterly.append("N/A")
+        #     total_quick_ratio_quarterly = []
+        #     try:
+        #         for i in range(4):
+        #             total_quick_ratio_quarterly.append((total_cash_equivalents_short_term_quarterly[i] + total_accounts_receivable_quarterly[i]) / total_current_liabilities_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             total_quick_ratio_quarterly.append("N/A")
 
-            total_cash_and_cash_equivalents_quarterly = []
-            try:
-                total_cash_and_cash_equivalents_quarterly = getData("Cash And Cash Equivalents", total_cash_and_cash_equivalents_quarterly)
-            except:
-                for i in range(4):
-                    total_cash_and_cash_equivalents_quarterly.append("N/A")
+        #     total_cash_and_cash_equivalents_quarterly = []
+        #     try:
+        #         total_cash_and_cash_equivalents_quarterly = getData("Cash And Cash Equivalents", total_cash_and_cash_equivalents_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_cash_and_cash_equivalents_quarterly.append("N/A")
 
-            total_cash_ratio_quarterly = []
-            try:
-                for i in range(4):
-                    total_cash_ratio_quarterly.append(total_cash_and_cash_equivalents_quarterly[i] / total_current_liabilities_quarterly[i])
-            except:
-                for i in range(4):
-                    total_cash_ratio_quarterly.append("N/A")
+        #     total_cash_ratio_quarterly = []
+        #     try:
+        #         for i in range(4):
+        #             total_cash_ratio_quarterly.append(total_cash_and_cash_equivalents_quarterly[i] / total_current_liabilities_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             total_cash_ratio_quarterly.append("N/A")
 
-            total_total_liabilities_quarterly = []
-            try:
-                total_total_liabilities_quarterly = getData("Total Liabilities Net Minority Interest", total_total_liabilities_quarterly)
-            except:
-                for i in range(4):
-                    total_total_liabilities_quarterly.append("N/A")
+        #     total_total_liabilities_quarterly = []
+        #     try:
+        #         total_total_liabilities_quarterly = getData("Total Liabilities Net Minority Interest", total_total_liabilities_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_total_liabilities_quarterly.append("N/A")
 
-            total_total_assets_quarterly = []
-            try:
-                total_total_assets_quarterly = getData("Total Assets", total_total_assets_quarterly)
-            except:
-                for i in range(4):
-                    total_total_assets_quarterly.append("N/A")
+        #     total_total_assets_quarterly = []
+        #     try:
+        #         total_total_assets_quarterly = getData("Total Assets", total_total_assets_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_total_assets_quarterly.append("N/A")
 
-            total_solvency_ratio_quarterly = []
-            try:
-                for i in range(4):
-                    total_solvency_ratio_quarterly.append(total_total_assets_quarterly[i] / total_total_liabilities_quarterly[i])
-            except:
-                for i in range(4):
-                    total_solvency_ratio_quarterly.append("N/A")
+        #     total_solvency_ratio_quarterly = []
+        #     try:
+        #         for i in range(4):
+        #             total_solvency_ratio_quarterly.append(total_total_assets_quarterly[i] / total_total_liabilities_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             total_solvency_ratio_quarterly.append("N/A")
 
-            total_shareholder_equity_quarterly = []
-            try:
-                total_shareholder_equity_quarterly = getData("Stockholders Equity", total_shareholder_equity_quarterly)
-            except:
-                for i in range(4):
-                    total_shareholder_equity_quarterly.append("N/A")
+        #     total_shareholder_equity_quarterly = []
+        #     try:
+        #         total_shareholder_equity_quarterly = getData("Stockholders Equity", total_shareholder_equity_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_shareholder_equity_quarterly.append("N/A")
 
-            total_de_ratio_quarterly = []
-            try:
-                for i in range(4):
-                    total_de_ratio_quarterly.append(total_total_liabilities_quarterly[i] / total_shareholder_equity_quarterly[i])
-            except:
-                for i in range(4):
-                    total_de_ratio_quarterly.append("N/A")
+        #     total_de_ratio_quarterly = []
+        #     try:
+        #         for i in range(4):
+        #             total_de_ratio_quarterly.append(total_total_liabilities_quarterly[i] / total_shareholder_equity_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             total_de_ratio_quarterly.append("N/A")
 
-            total_long_term_debt_quarterly = []
-            try:
-                total_long_term_debt_quarterly = getData("Long Term Debt", total_long_term_debt_quarterly)
-            except:
-                for i in range(4):
-                    total_long_term_debt_quarterly.append("N/A")
+        #     total_long_term_debt_quarterly = []
+        #     try:
+        #         total_long_term_debt_quarterly = getData("Long Term Debt", total_long_term_debt_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_long_term_debt_quarterly.append("N/A")
 
-            total_capitalization_ratio_quarterly = []
-            try:
-                for i in range(4):
-                    total_capitalization_ratio_quarterly.append(total_long_term_debt_quarterly[i] / (total_long_term_debt_quarterly[i] + total_shareholder_equity_quarterly[i]))
-            except:
-                for i in range(4):
-                    total_capitalization_ratio_quarterly.append("N/A")
+        #     total_capitalization_ratio_quarterly = []
+        #     try:
+        #         for i in range(4):
+        #             total_capitalization_ratio_quarterly.append(total_long_term_debt_quarterly[i] / (total_long_term_debt_quarterly[i] + total_shareholder_equity_quarterly[i]))
+        #     except:
+        #         for i in range(4):
+        #             total_capitalization_ratio_quarterly.append("N/A")
 
-            total_equity_ratio_quarterly = []
-            try:
-                for i in range(4):
-                    total_equity_ratio_quarterly.append(total_shareholder_equity_quarterly[i] / total_total_assets_quarterly[i])
-            except:
-                for i in range(4):
-                    total_equity_ratio_quarterly.append("N/A")
+        #     total_equity_ratio_quarterly = []
+        #     try:
+        #         for i in range(4):
+        #             total_equity_ratio_quarterly.append(total_shareholder_equity_quarterly[i] / total_total_assets_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             total_equity_ratio_quarterly.append("N/A")
 
-            total_goodwill_and_other_intangible_assets_quarterly = []
-            try:
-                total_goodwill_and_other_intangible_assets_quarterly = getData("Goodwill And Other Intangible Assets", total_goodwill_and_other_intangible_assets_quarterly)
-            except:
-                for i in range(4):
-                    total_goodwill_and_other_intangible_assets_quarterly.append("N/A")
+        #     total_goodwill_and_other_intangible_assets_quarterly = []
+        #     try:
+        #         total_goodwill_and_other_intangible_assets_quarterly = getData("Goodwill And Other Intangible Assets", total_goodwill_and_other_intangible_assets_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_goodwill_and_other_intangible_assets_quarterly.append("N/A")
 
-            total_tangible_book_value_quarterly = []
-            try:
-                total_tangible_book_value_quarterly = getData("Tangible Book Value", total_tangible_book_value_quarterly)
-            except:
-                for i in range(4):
-                    total_tangible_book_value_quarterly.append("N/A")
+        #     total_tangible_book_value_quarterly = []
+        #     try:
+        #         total_tangible_book_value_quarterly = getData("Tangible Book Value", total_tangible_book_value_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_tangible_book_value_quarterly.append("N/A")
 
-            total_book_value_quarterly = []
-            try:
-                for i in range(4):
-                    total_book_value_quarterly.append(total_tangible_book_value_quarterly[i] + total_goodwill_and_other_intangible_assets_quarterly[i])
-            except:
-                for i in range(4):
-                    total_book_value_quarterly.append("N/A")
+        #     total_book_value_quarterly = []
+        #     try:
+        #         for i in range(4):
+        #             total_book_value_quarterly.append(total_tangible_book_value_quarterly[i] + total_goodwill_and_other_intangible_assets_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             total_book_value_quarterly.append("N/A")
             
-            total_ordinary_shares_number_quarterly = []
-            try:
-                total_ordinary_shares_number_quarterly = getData("Ordinary Shares Number", total_ordinary_shares_number_quarterly)
-            except:
-                for i in range(4):
-                    total_ordinary_shares_number_quarterly.append("N/A")
+        #     total_ordinary_shares_number_quarterly = []
+        #     try:
+        #         total_ordinary_shares_number_quarterly = getData("Ordinary Shares Number", total_ordinary_shares_number_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_ordinary_shares_number_quarterly.append("N/A")
 
-            total_book_value_share_quarterly = []
-            try:
-                for i in range(4):
-                    total_book_value_share_quarterly.append(total_book_value_quarterly[i] / total_ordinary_shares_number_quarterly[i])
-            except:
-                for i in range(4):
-                    total_book_value_share_quarterly.append("N/A")
+        #     total_book_value_share_quarterly = []
+        #     try:
+        #         for i in range(4):
+        #             total_book_value_share_quarterly.append(total_book_value_quarterly[i] / total_ordinary_shares_number_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             total_book_value_share_quarterly.append("N/A")
 
-            total_tangible_book_value_share_quarterly = []
-            try:
-                for i in range(4):
-                    total_tangible_book_value_share_quarterly.append(total_tangible_book_value_quarterly[i] / total_ordinary_shares_number_quarterly[i])
-            except:
-                for i in range(4):
-                    total_tangible_book_value_share_quarterly.append("N/A")
+        #     total_tangible_book_value_share_quarterly = []
+        #     try:
+        #         for i in range(4):
+        #             total_tangible_book_value_share_quarterly.append(total_tangible_book_value_quarterly[i] / total_ordinary_shares_number_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             total_tangible_book_value_share_quarterly.append("N/A")
 
-            total_asset_turnover_ratio_quarterly = []
-            try:
-                for i in range(4):
-                    total_asset_turnover_ratio_quarterly.append(total_revenue_quarterly[i] / total_total_assets_quarterly[i])
-            except:
-                for i in range(4):
-                    total_asset_turnover_ratio_quarterly.append("N/A")
+        #     total_asset_turnover_ratio_quarterly = []
+        #     try:
+        #         for i in range(4):
+        #             total_asset_turnover_ratio_quarterly.append(total_revenue_quarterly[i] / total_total_assets_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             total_asset_turnover_ratio_quarterly.append("N/A")
 
-            total_inventory_quarterly = []
-            try:
-                total_inventory_quarterly = getData("Inventory", total_inventory_quarterly)
-            except:
-                for i in range(4):
-                    total_inventory_quarterly.append("N/A")
+        #     total_inventory_quarterly = []
+        #     try:
+        #         total_inventory_quarterly = getData("Inventory", total_inventory_quarterly)
+        #     except:
+        #         for i in range(4):
+        #             total_inventory_quarterly.append("N/A")
 
-            total_inventory_turnover_quarterly = []
-            try:
-                for i in range(4):
-                    total_inventory_turnover_quarterly.append(total_cogs_quarterly[i] / total_inventory_quarterly[i])
-            except:
-                for i in range(4):
-                    total_inventory_turnover_quarterly.append("N/A")    
+        #     total_inventory_turnover_quarterly = []
+        #     try:
+        #         for i in range(4):
+        #             total_inventory_turnover_quarterly.append(total_cogs_quarterly[i] / total_inventory_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             total_inventory_turnover_quarterly.append("N/A")    
 
         if quoteType == "EQUITY":
             # Fetch annual cash flow
@@ -984,148 +984,148 @@ def get_all_time_data(ticker):
                 for i in range(4):
                     fcf_to_equity_y.append("N/A") 
 
-        if quoteType == "EQUITY":
-            # Fetch quarterly cash flow
-            quarterly_cash_flow = stock.quarterly_cashflow
-            quarterly_cash_flow = quarterly_cash_flow.T  # Transpose to make it easier to iterate by quarter
+        # if quoteType == "EQUITY":
+        #     # Fetch quarterly cash flow
+        #     quarterly_cash_flow = stock.quarterly_cashflow
+        #     quarterly_cash_flow = quarterly_cash_flow.T  # Transpose to make it easier to iterate by quarter
 
-            def getData(name, target_list):
-                for item in quarterly_cash_flow[name]:
-                    if not math.isnan(item):
-                        target_list.append(float(item))
-                    else:
-                        target_list.append("None")
-                return target_list
+        #     def getData(name, target_list):
+        #         for item in quarterly_cash_flow[name]:
+        #             if not math.isnan(item):
+        #                 target_list.append(float(item))
+        #             else:
+        #                 target_list.append("None")
+        #         return target_list
 
-            operating_cash_flow_q = []
-            try:
-                operating_cash_flow_q = getData("Operating Cash Flow", operating_cash_flow_q)
-            except:
-                for i in range(4):
-                    operating_cash_flow_q.append("N/A")
+        #     operating_cash_flow_q = []
+        #     try:
+        #         operating_cash_flow_q = getData("Operating Cash Flow", operating_cash_flow_q)
+        #     except:
+        #         for i in range(4):
+        #             operating_cash_flow_q.append("N/A")
 
-            free_cash_flow_q = []
-            try:
-                free_cash_flow_q = getData("Free Cash Flow", free_cash_flow_q)
-            except:
-                for i in range(4):
-                    free_cash_flow_q.append("N/A")
+        #     free_cash_flow_q = []
+        #     try:
+        #         free_cash_flow_q = getData("Free Cash Flow", free_cash_flow_q)
+        #     except:
+        #         for i in range(4):
+        #             free_cash_flow_q.append("N/A")
 
-            fcf_margin_q = []
-            try:
-                for i in range(4):
-                    fcf_margin_q.append(free_cash_flow_q[i] / total_revenue_quarterly[i])
-            except:
-                for i in range(4):
-                    fcf_margin_q.append("N/A")   
+        #     fcf_margin_q = []
+        #     try:
+        #         for i in range(4):
+        #             fcf_margin_q.append(free_cash_flow_q[i] / total_revenue_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             fcf_margin_q.append("N/A")   
 
-            cashflow_margin_q = []
-            try:
-                for i in range(4):
-                    cashflow_margin_q.append(operating_cash_flow_q[i] / total_revenue_quarterly[i])
-            except:
-                for i in range(4):
-                    cashflow_margin_q.append("N/A") 
+        #     cashflow_margin_q = []
+        #     try:
+        #         for i in range(4):
+        #             cashflow_margin_q.append(operating_cash_flow_q[i] / total_revenue_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             cashflow_margin_q.append("N/A") 
 
-            cashflow_to_net_income_margin_q = []
-            try:
-                for i in range(4):
-                    cashflow_to_net_income_margin_q.append(operating_cash_flow_q[i] / total_net_income_quarterly[i])
-            except:
-                for i in range(4):
-                    cashflow_to_net_income_margin_q.append("N/A") 
+        #     cashflow_to_net_income_margin_q = []
+        #     try:
+        #         for i in range(4):
+        #             cashflow_to_net_income_margin_q.append(operating_cash_flow_q[i] / total_net_income_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             cashflow_to_net_income_margin_q.append("N/A") 
 
-            capEx_q = []
-            try:
-                capEx_q = getData("Capital Expenditure", capEx_q)
-            except:
-                for i in range(4):
-                    capEx_q.append("N/A")
+        #     capEx_q = []
+        #     try:
+        #         capEx_q = getData("Capital Expenditure", capEx_q)
+        #     except:
+        #         for i in range(4):
+        #             capEx_q.append("N/A")
 
-            capEx_ratio_q = []
-            try:
-                for i in range(4):
-                    capEx_ratio_q.append(capEx_q[i] / operating_cash_flow_q[i])
-            except:
-                for i in range(4):
-                    capEx_ratio_q.append("N/A") 
+        #     capEx_ratio_q = []
+        #     try:
+        #         for i in range(4):
+        #             capEx_ratio_q.append(capEx_q[i] / operating_cash_flow_q[i])
+        #     except:
+        #         for i in range(4):
+        #             capEx_ratio_q.append("N/A") 
 
-            common_stock_dividends_q = []
-            try:
-                common_stock_dividends_q = getData("Common Stock Dividend Paid", common_stock_dividends_q)
-            except:
-                for i in range(4):
-                    common_stock_dividends_q.append("N/A")
+        #     common_stock_dividends_q = []
+        #     try:
+        #         common_stock_dividends_q = getData("Common Stock Dividend Paid", common_stock_dividends_q)
+        #     except:
+        #         for i in range(4):
+        #             common_stock_dividends_q.append("N/A")
 
-            reinvestment_ratio_q = []
-            try:
-                for i in range(4):
-                    reinvestment_ratio_q.append(1 - (common_stock_dividends_q[i] / total_net_income_quarterly[i]))
-            except:
-                for i in range(4):
-                    reinvestment_ratio_q.append("N/A") 
+        #     reinvestment_ratio_q = []
+        #     try:
+        #         for i in range(4):
+        #             reinvestment_ratio_q.append(1 - (common_stock_dividends_q[i] / total_net_income_quarterly[i]))
+        #     except:
+        #         for i in range(4):
+        #             reinvestment_ratio_q.append("N/A") 
 
-            dividend_coverage_q = []
-            try:
-                for i in range(4):
-                    dividend_coverage_q.append(operating_cash_flow_q[i] / common_stock_dividends_q[i])
-            except:
-                for i in range(4):
-                    dividend_coverage_q.append("N/A") 
+        #     dividend_coverage_q = []
+        #     try:
+        #         for i in range(4):
+        #             dividend_coverage_q.append(operating_cash_flow_q[i] / common_stock_dividends_q[i])
+        #     except:
+        #         for i in range(4):
+        #             dividend_coverage_q.append("N/A") 
 
-            interest_paid_q = []
-            try:
-                interest_paid_q = getData("Interest Paid Supplemental Data", interest_paid_q)
-            except:
-                for i in range(4):
-                    interest_paid_q.append("N/A")
+        #     interest_paid_q = []
+        #     try:
+        #         interest_paid_q = getData("Interest Paid Supplemental Data", interest_paid_q)
+        #     except:
+        #         for i in range(4):
+        #             interest_paid_q.append("N/A")
 
-            cash_interest_cov_q = []
-            try:
-                for i in range(4):
-                    cash_interest_cov_q.append(operating_cash_flow_q[i] / interest_paid_q[i])
-            except:
-                for i in range(4):
-                    cash_interest_cov_q.append("N/A") 
+        #     cash_interest_cov_q = []
+        #     try:
+        #         for i in range(4):
+        #             cash_interest_cov_q.append(operating_cash_flow_q[i] / interest_paid_q[i])
+        #     except:
+        #         for i in range(4):
+        #             cash_interest_cov_q.append("N/A") 
 
-            cash_return_assets_q = []
-            try:
-                for i in range(4):
-                    cash_return_assets_q.append(operating_cash_flow_q[i] / total_total_assets_quarterly[i])
-            except:
-                for i in range(4):
-                    cash_return_assets_q.append("N/A") 
+        #     cash_return_assets_q = []
+        #     try:
+        #         for i in range(4):
+        #             cash_return_assets_q.append(operating_cash_flow_q[i] / total_total_assets_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             cash_return_assets_q.append("N/A") 
             
-            cash_return_equity_q = []
-            try:
-                for i in range(4):
-                    cash_return_equity_q.append(operating_cash_flow_q[i] / total_shareholder_equity_quarterly[i])
-            except:
-                for i in range(4):
-                    cash_return_equity_q.append("N/A") 
+        #     cash_return_equity_q = []
+        #     try:
+        #         for i in range(4):
+        #             cash_return_equity_q.append(operating_cash_flow_q[i] / total_shareholder_equity_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             cash_return_equity_q.append("N/A") 
 
-            cash_convert_ratio_q = []
-            try:
-                for i in range(4):
-                    cash_convert_ratio_q.append(operating_cash_flow_q[i] / total_net_income_quarterly[i])
-            except:
-                for i in range(4):
-                    cash_convert_ratio_q.append("N/A") 
+        #     cash_convert_ratio_q = []
+        #     try:
+        #         for i in range(4):
+        #             cash_convert_ratio_q.append(operating_cash_flow_q[i] / total_net_income_quarterly[i])
+        #     except:
+        #         for i in range(4):
+        #             cash_convert_ratio_q.append("N/A") 
 
-            net_borrowing_q = []
-            try:
-                net_borrowing_q = getData("Net Issuance Payments Of Debt", net_borrowing_q)
-            except:
-                for i in range(4):
-                    net_borrowing_q.append("N/A")
+        #     net_borrowing_q = []
+        #     try:
+        #         net_borrowing_q = getData("Net Issuance Payments Of Debt", net_borrowing_q)
+        #     except:
+        #         for i in range(4):
+        #             net_borrowing_q.append("N/A")
 
-            fcf_to_equity_q = []
-            try:
-                for i in range(4):
-                    fcf_to_equity_q.append(operating_cash_flow_q[i] - capEx_q[i] + net_borrowing_q[i])
-            except:
-                for i in range(4):
-                    fcf_to_equity_q.append("N/A")
+        #     fcf_to_equity_q = []
+        #     try:
+        #         for i in range(4):
+        #             fcf_to_equity_q.append(operating_cash_flow_q[i] - capEx_q[i] + net_borrowing_q[i])
+        #     except:
+        #         for i in range(4):
+        #             fcf_to_equity_q.append("N/A")
 
 
 
@@ -1146,21 +1146,21 @@ def get_all_time_data(ticker):
                 "total_net_profit_margin_yearly": total_net_profit_margin_yearly,
                 "total_diluted_eps_yearly": total_diluted_eps_yearly,
                 "total_cogs_yearly": total_cogs_yearly,
-                "time_quarterly": time_quarterly,
-                "total_revenue_quarterly": total_revenue_quarterly,
-                "total_cogs_quarterly": total_cogs_quarterly,
-                "total_gross_profit_quarterly": total_gross_profit_quarterly,
-                "total_gross_margin_quarterly": total_gross_margin_quarterly,
-                "total_ebit_quarterly": total_ebit_quarterly,
-                "total_operating_expenses_quarterly": total_operating_expenses_quarterly,
-                "total_ebit_margin_quarterly": total_ebit_margin_quarterly,
-                "total_ebitda_quarterly": total_ebitda_quarterly,
-                "total_ebitda_margin_quarterly": total_ebitda_margin_quarterly,
-                "total_pretax_income_quarterly": total_pretax_income_quarterly,
-                "total_tax_provision_quarterly": total_tax_provision_quarterly,
-                "total_net_income_quarterly": total_net_income_quarterly,
-                "total_net_profit_margin_quarterly": total_net_profit_margin_quarterly,
-                "total_diluted_eps_quarterly": total_diluted_eps_quarterly,
+                # "time_quarterly": time_quarterly,
+                # "total_revenue_quarterly": total_revenue_quarterly,
+                # "total_cogs_quarterly": total_cogs_quarterly,
+                # "total_gross_profit_quarterly": total_gross_profit_quarterly,
+                # "total_gross_margin_quarterly": total_gross_margin_quarterly,
+                # "total_ebit_quarterly": total_ebit_quarterly,
+                # "total_operating_expenses_quarterly": total_operating_expenses_quarterly,
+                # "total_ebit_margin_quarterly": total_ebit_margin_quarterly,
+                # "total_ebitda_quarterly": total_ebitda_quarterly,
+                # "total_ebitda_margin_quarterly": total_ebitda_margin_quarterly,
+                # "total_pretax_income_quarterly": total_pretax_income_quarterly,
+                # "total_tax_provision_quarterly": total_tax_provision_quarterly,
+                # "total_net_income_quarterly": total_net_income_quarterly,
+                # "total_net_profit_margin_quarterly": total_net_profit_margin_quarterly,
+                # "total_diluted_eps_quarterly": total_diluted_eps_quarterly,
                 "total_working_capital_yearly": total_working_capital_yearly,
                 "total_current_ratio_yearly": total_current_ratio_yearly,
                 "total_quick_ratio_yearly": total_quick_ratio_yearly,
@@ -1176,21 +1176,21 @@ def get_all_time_data(ticker):
                 "total_total_assets_yearly": total_total_assets_yearly,
                 "total_total_liabilities_yearly": total_total_liabilities_yearly,
                 "total_shareholder_equity_yearly": total_shareholder_equity_yearly,
-                "total_working_capital_quarterly": total_working_capital_quarterly,
-                "total_current_ratio_quarterly": total_current_ratio_quarterly,
-                "total_quick_ratio_quarterly": total_quick_ratio_quarterly,
-                "total_cash_ratio_quarterly": total_cash_ratio_quarterly,
-                "total_solvency_ratio_quarterly": total_solvency_ratio_quarterly,
-                "total_de_ratio_quarterly": total_de_ratio_quarterly,
-                "total_capitalization_ratio_quarterly": total_capitalization_ratio_quarterly,
-                "total_equity_ratio_quarterly": total_equity_ratio_quarterly,
-                "total_book_value_share_quarterly": total_book_value_share_quarterly,
-                "total_tangible_book_value_share_quarterly": total_tangible_book_value_share_quarterly,
-                "total_asset_turnover_ratio_quarterly": total_asset_turnover_ratio_quarterly,
-                "total_inventory_turnover_quarterly": total_inventory_turnover_quarterly,
-                "total_total_assets_quarterly": total_total_assets_quarterly,
-                "total_total_liabilities_quarterly": total_total_liabilities_quarterly,
-                "total_shareholder_equity_quarterly": total_shareholder_equity_quarterly,
+                # "total_working_capital_quarterly": total_working_capital_quarterly,
+                # "total_current_ratio_quarterly": total_current_ratio_quarterly,
+                # "total_quick_ratio_quarterly": total_quick_ratio_quarterly,
+                # "total_cash_ratio_quarterly": total_cash_ratio_quarterly,
+                # "total_solvency_ratio_quarterly": total_solvency_ratio_quarterly,
+                # "total_de_ratio_quarterly": total_de_ratio_quarterly,
+                # "total_capitalization_ratio_quarterly": total_capitalization_ratio_quarterly,
+                # "total_equity_ratio_quarterly": total_equity_ratio_quarterly,
+                # "total_book_value_share_quarterly": total_book_value_share_quarterly,
+                # "total_tangible_book_value_share_quarterly": total_tangible_book_value_share_quarterly,
+                # "total_asset_turnover_ratio_quarterly": total_asset_turnover_ratio_quarterly,
+                # "total_inventory_turnover_quarterly": total_inventory_turnover_quarterly,
+                # "total_total_assets_quarterly": total_total_assets_quarterly,
+                # "total_total_liabilities_quarterly": total_total_liabilities_quarterly,
+                # "total_shareholder_equity_quarterly": total_shareholder_equity_quarterly,
                 "operating_cash_flow_y": operating_cash_flow_y,
                 "free_cash_flow_y": free_cash_flow_y,
                 "fcf_margin_y": fcf_margin_y,
@@ -1204,19 +1204,19 @@ def get_all_time_data(ticker):
                 "cash_return_equity_y": cash_return_equity_y,
                 "cash_convert_ratio_y": cash_convert_ratio_y,
                 "fcf_to_equity_y": fcf_to_equity_y,
-                "operating_cash_flow_q": operating_cash_flow_q,
-                "free_cash_flow_q": free_cash_flow_q,
-                "fcf_margin_q": fcf_margin_q,
-                "cashflow_margin_q": cashflow_margin_q,
-                "cashflow_to_net_income_margin_q": cashflow_to_net_income_margin_q,
-                "capEx_ratio_q": capEx_ratio_q,
-                "reinvestment_ratio_q": reinvestment_ratio_q,
-                "dividend_coverage_q": dividend_coverage_q,
-                "cash_interest_cov_q": cash_interest_cov_q,
-                "cash_return_assets_q": cash_return_assets_q,
-                "cash_return_equity_q": cash_return_equity_q,
-                "cash_convert_ratio_q": cash_convert_ratio_q,
-                "fcf_to_equity_q": fcf_to_equity_q,
+                # "operating_cash_flow_q": operating_cash_flow_q,
+                # "free_cash_flow_q": free_cash_flow_q,
+                # "fcf_margin_q": fcf_margin_q,
+                # "cashflow_margin_q": cashflow_margin_q,
+                # "cashflow_to_net_income_margin_q": cashflow_to_net_income_margin_q,
+                # "capEx_ratio_q": capEx_ratio_q,
+                # "reinvestment_ratio_q": reinvestment_ratio_q,
+                # "dividend_coverage_q": dividend_coverage_q,
+                # "cash_interest_cov_q": cash_interest_cov_q,
+                # "cash_return_assets_q": cash_return_assets_q,
+                # "cash_return_equity_q": cash_return_equity_q,
+                # "cash_convert_ratio_q": cash_convert_ratio_q,
+                # "fcf_to_equity_q": fcf_to_equity_q,
                 "symbol": ticker.upper(),
                 "price": price,
                 "exchangeName": exchange_name,

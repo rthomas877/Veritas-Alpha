@@ -287,6 +287,24 @@ body {
   padding: 1.25vh;
 }
 
+.msbTextY {
+  display: flex;
+  vertical-align: middle;
+  width: 30vw;
+  border: 3px solid;
+  text-align: left;
+  border-color: #004226ff;
+  border-radius: 5px;
+  height: 45px;
+  color: #004226ff;
+  background-color: #f5f5dc;
+  font-size: 1.25vw;
+  padding: 1.25vh;
+  margin-top: 3vh;
+  font-family: 'Hepta Slab', serif;
+}
+
+
 .searchButton {
   display: inline-block;
   vertical-align: middle;
@@ -346,6 +364,108 @@ body {
   color: #004226ff;
   outline: none;
 }
+
+.searchButtonY {
+  display: flex;
+  vertical-align: left;
+  line-height: 4.5vh; /* matches height for vertical centering */
+  height: 45px;
+  border: 3px solid;
+  border-radius: 5px;
+  border-color: #004226ff;
+  background-color: #004226ff;
+  font-size: 20px;
+  color: white;
+  outline: none;
+  margin: 3vh;
+  font-family: 'Hepta Slab', serif;
+}
+
+.searchButtonY:hover {
+  display: flex;
+  vertical-align: left;
+  line-height: 4.5vh; /* matches height for vertical centering */
+  height: 45px;
+  border: 3px solid;
+  border-radius: 5px;
+  border-color: #004226ff;
+  background-color: #f5f5dc;
+  font-size: 20px;
+  color: #004226ff;
+  outline: none;
+  margin: 3vh;
+  font-family: 'Hepta Slab', serif;
+  
+}
+
+.searchButtonYO {
+  display: flex;
+  vertical-align: left;
+  line-height: 4.5vh; /* matches height for vertical centering */
+  height: 45px;
+  border: 3px solid;
+  border-radius: 5px;
+  border-color: #004226ff;
+  background-color: #004226ff;
+  font-size: 20px;
+  color: white;
+  outline: none;
+  margin: 3vh;
+  font-family: 'Hepta Slab', serif;
+  margin-bottom: calc(100vh - 45%);
+}
+
+.searchButtonYO:hover {
+  display: flex;
+  vertical-align: left;
+  line-height: 4.5vh; /* matches height for vertical centering */
+  height: 45px;
+  border: 3px solid;
+  border-radius: 5px;
+  border-color: #004226ff;
+  background-color: #f5f5dc;
+  font-size: 20px;
+  color: #004226ff;
+  outline: none;
+  margin: 3vh;
+  font-family: 'Hepta Slab', serif;
+  margin-bottom: calc(100vh - 45%);
+}
+
+.searchButtonYN {
+  display: flex;
+  vertical-align: left;
+  line-height: 4.5vh; /* matches height for vertical centering */
+  height: 45px;
+  border: 3px solid;
+  border-radius: 5px;
+  border-color: #004226ff;
+  background-color: #004226ff;
+  font-size: 20px;
+  color: white;
+  outline: none;
+  margin: 3vh;
+  font-family: 'Hepta Slab', serif;
+  margin-bottom: calc(100vh - 45%);
+}
+
+.searchButtonYN:hover {
+  display: flex;
+  vertical-align: left;
+  line-height: 4.5vh; /* matches height for vertical centering */
+  height: 45px;
+  border: 3px solid;
+  border-radius: 5px;
+  border-color: #004226ff;
+  background-color: #f5f5dc;
+  font-size: 20px;
+  color: #004226ff;
+  outline: none;
+  margin: 3vh;
+  font-family: 'Hepta Slab', serif;
+  margin-bottom: calc(100vh - 45%);
+}
+
 
 .msbText:focus {
   border: 3px solid;

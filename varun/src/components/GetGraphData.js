@@ -30,21 +30,21 @@ function GetGraphData({ ticker, time }) {
   const [total_net_profit_margin_yearly, setTotal_net_profit_margin_yearly] = useState([]);
   const [total_diluted_eps_yearly, setTotal_diluted_eps_yearly] = useState([]);
   const [time_yearly, setTime_yearly] = useState([]);
-  const [total_revenue_quarterly, setTotal_revenue_quarterly] = useState([]);
-  const [total_cogs_quarterly, setTotal_cogs_quarterly] = useState([])
-  const [total_gross_profit_quarterly, setTotal_gross_profit_quarterly] = useState([]);
-  const [total_gross_margin_quarterly, setTotal_gross_margin_quarterly] = useState([]);
-  const [total_ebit_quarterly, setTotal_ebit_quarterly] = useState([]);
-  const [total_operating_expenses_quarterly, setTotal_operating_expenses_quarterly] = useState([]);
-  const [total_ebit_margin_quarterly, setTotal_ebit_margin_quarterly] = useState([]);
-  const [total_ebitda_quarterly, setTotal_ebitda_quarterly] = useState([]);
-  const [total_ebitda_margin_quarterly, setTotal_ebitda_margin_quarterly] = useState([]);
-  const [total_pretax_income_quarterly, setTotal_pretax_income_quarterly] = useState([]);
-  const [total_tax_provision_quarterly, setTotal_tax_provision_quarterly] = useState([]);
-  const [total_net_income_quarterly, setTotal_net_income_quarterly] = useState([]);
-  const [total_net_profit_margin_quarterly, setTotal_net_profit_margin_quarterly] = useState([]);
-  const [total_diluted_eps_quarterly, setTotal_diluted_eps_quarterly] = useState([]);
-  const [time_quarterly, setTime_quarterly] = useState([]);
+  // const [total_revenue_quarterly, setTotal_revenue_quarterly] = useState([]);
+  // const [total_cogs_quarterly, setTotal_cogs_quarterly] = useState([])
+  // const [total_gross_profit_quarterly, setTotal_gross_profit_quarterly] = useState([]);
+  // const [total_gross_margin_quarterly, setTotal_gross_margin_quarterly] = useState([]);
+  // const [total_ebit_quarterly, setTotal_ebit_quarterly] = useState([]);
+  // const [total_operating_expenses_quarterly, setTotal_operating_expenses_quarterly] = useState([]);
+  // const [total_ebit_margin_quarterly, setTotal_ebit_margin_quarterly] = useState([]);
+  // const [total_ebitda_quarterly, setTotal_ebitda_quarterly] = useState([]);
+  // const [total_ebitda_margin_quarterly, setTotal_ebitda_margin_quarterly] = useState([]);
+  // const [total_pretax_income_quarterly, setTotal_pretax_income_quarterly] = useState([]);
+  // const [total_tax_provision_quarterly, setTotal_tax_provision_quarterly] = useState([]);
+  // const [total_net_income_quarterly, setTotal_net_income_quarterly] = useState([]);
+  // const [total_net_profit_margin_quarterly, setTotal_net_profit_margin_quarterly] = useState([]);
+  // const [total_diluted_eps_quarterly, setTotal_diluted_eps_quarterly] = useState([]);
+  // const [time_quarterly, setTime_quarterly] = useState([]);
   const [total_working_capital_yearly, setTotal_working_capital_yearly] = useState([]);
   const [total_current_ratio_yearly, setTotal_current_ratio_yearly] = useState([]);
   const [total_quick_ratio_yearly, setTotal_quick_ratio_yearly] = useState([]);
@@ -60,21 +60,21 @@ function GetGraphData({ ticker, time }) {
   const [total_total_liabilities_yearly, setTotal_total_liabilities_yearly] = useState([]);
   const [total_total_assets_yearly, setTotal_total_assets_yearly] = useState([]);
   const [total_shareholder_equity_yearly, setTotal_shareholder_equity_yearly] = useState([]);
-  const [total_working_capital_quarterly, setTotal_working_capital_quarterly] = useState([]);
-  const [total_current_ratio_quarterly, setTotal_current_ratio_quarterly] = useState([]);
-  const [total_quick_ratio_quarterly, setTotal_quick_ratio_quarterly] = useState([]);
-  const [total_cash_ratio_quarterly, setTotal_cash_ratio_quarterly] = useState([]);
-  const [total_solvency_ratio_quarterly, setTotal_solvency_ratio_quarterly] = useState([]);
-  const [total_de_ratio_quarterly, setTotal_de_ratio_quarterly] = useState([]);
-  const [total_capitalization_ratio_quarterly, setTotal_capitalization_ratio_quarterly] = useState([]);
-  const [total_equity_ratio_quarterly, setTotal_equity_ratio_quarterly] = useState([]);
-  const [total_book_value_share_quarterly, setTotal_book_value_share_quarterly] = useState([]);
-  const [total_tangible_book_value_share_quarterly, setTotal_tangible_book_value_share_quarterly] = useState([]);
-  const [total_asset_turnover_ratio_quarterly, setTotal_asset_turnover_ratio_quarterly] = useState([]);
-  const [total_inventory_turnover_quarterly, setTotal_inventory_turnover_quarterly] = useState([]);
-  const [total_total_liabilities_quarterly, setTotal_total_liabilities_quarterly] = useState([]);
-  const [total_total_assets_quarterly, setTotal_total_assets_quarterly] = useState([]);
-  const [total_shareholder_equity_quarterly, setTotal_shareholder_equity_quarterly] = useState([]);
+  // const [total_working_capital_quarterly, setTotal_working_capital_quarterly] = useState([]);
+  // const [total_current_ratio_quarterly, setTotal_current_ratio_quarterly] = useState([]);
+  // const [total_quick_ratio_quarterly, setTotal_quick_ratio_quarterly] = useState([]);
+  // const [total_cash_ratio_quarterly, setTotal_cash_ratio_quarterly] = useState([]);
+  // const [total_solvency_ratio_quarterly, setTotal_solvency_ratio_quarterly] = useState([]);
+  // const [total_de_ratio_quarterly, setTotal_de_ratio_quarterly] = useState([]);
+  // const [total_capitalization_ratio_quarterly, setTotal_capitalization_ratio_quarterly] = useState([]);
+  // const [total_equity_ratio_quarterly, setTotal_equity_ratio_quarterly] = useState([]);
+  // const [total_book_value_share_quarterly, setTotal_book_value_share_quarterly] = useState([]);
+  // const [total_tangible_book_value_share_quarterly, setTotal_tangible_book_value_share_quarterly] = useState([]);
+  // const [total_asset_turnover_ratio_quarterly, setTotal_asset_turnover_ratio_quarterly] = useState([]);
+  // const [total_inventory_turnover_quarterly, setTotal_inventory_turnover_quarterly] = useState([]);
+  // const [total_total_liabilities_quarterly, setTotal_total_liabilities_quarterly] = useState([]);
+  // const [total_total_assets_quarterly, setTotal_total_assets_quarterly] = useState([]);
+  // const [total_shareholder_equity_quarterly, setTotal_shareholder_equity_quarterly] = useState([]);
   const [operating_cash_flow_y, setOperating_cash_flow_y] = useState([]);
   const [free_cash_flow_y, setFree_cash_flow_y] = useState([]);
   const [fcf_margin_y, setFcf_margin_y] = useState([]);
@@ -88,19 +88,19 @@ function GetGraphData({ ticker, time }) {
   const [cash_return_equity_y, setCash_return_equity_y] = useState([]);
   const [cash_convert_ratio_y, setCash_convert_ratio_y] = useState([]);
   const [fcf_to_equity_y, setFcf_to_equity_y] = useState([]);
-  const [operating_cash_flow_q, setOperating_cash_flow_q] = useState([]);
-  const [free_cash_flow_q, setFree_cash_flow_q] = useState([]);
-  const [fcf_margin_q, setFcf_margin_q] = useState([]);
-  const [cashflow_margin_q, setCashflow_margin_q] = useState([]);
-  const [cashflow_to_net_income_margin_q, setCashflow_to_net_income_margin_q] = useState([]);
-  const [capEx_ratio_q, setCapEx_ratio_q] = useState([]);
-  const [reinvestment_ratio_q, setReinvestment_ratio_q] = useState([]);
-  const [dividend_coverage_q, setDividend_coverage_q] = useState([]);
-  const [cash_interest_cov_q, setCash_interest_cov_q] = useState([]);
-  const [cash_return_assets_q, setCash_return_assets_q] = useState([]);
-  const [cash_return_equity_q, setCash_return_equity_q] = useState([]);
-  const [cash_convert_ratio_q, setCash_convert_ratio_q] = useState([]);
-  const [fcf_to_equity_q, setFcf_to_equity_q] = useState([]);
+  // const [operating_cash_flow_q, setOperating_cash_flow_q] = useState([]);
+  // const [free_cash_flow_q, setFree_cash_flow_q] = useState([]);
+  // const [fcf_margin_q, setFcf_margin_q] = useState([]);
+  // const [cashflow_margin_q, setCashflow_margin_q] = useState([]);
+  // const [cashflow_to_net_income_margin_q, setCashflow_to_net_income_margin_q] = useState([]);
+  // const [capEx_ratio_q, setCapEx_ratio_q] = useState([]);
+  // const [reinvestment_ratio_q, setReinvestment_ratio_q] = useState([]);
+  // const [dividend_coverage_q, setDividend_coverage_q] = useState([]);
+  // const [cash_interest_cov_q, setCash_interest_cov_q] = useState([]);
+  // const [cash_return_assets_q, setCash_return_assets_q] = useState([]);
+  // const [cash_return_equity_q, setCash_return_equity_q] = useState([]);
+  // const [cash_convert_ratio_q, setCash_convert_ratio_q] = useState([]);
+  // const [fcf_to_equity_q, setFcf_to_equity_q] = useState([]);
 
 
 
@@ -136,21 +136,21 @@ function GetGraphData({ ticker, time }) {
       setTotal_net_profit_margin_yearly(allData.total_net_profit_margin_yearly || []);
       setTotal_diluted_eps_yearly(allData.total_diluted_eps_yearly || []);
       setTime_yearly(allData.time_yearly || []);
-      setTotal_revenue_quarterly(allData.total_revenue_quarterly || []);
-      setTotal_cogs_quarterly(allData.total_cogs_quarterly || []);
-      setTotal_gross_profit_quarterly(allData.total_gross_profit_quarterly || []);
-      setTotal_gross_margin_quarterly(allData.total_gross_margin_quarterly || []);
-      setTotal_ebit_quarterly(allData.total_ebit_quarterly || []);
-      setTotal_operating_expenses_quarterly(allData.total_operating_expenses_quarterly || []);
-      setTotal_ebit_margin_quarterly(allData.total_ebit_margin_quarterly || []);
-      setTotal_ebitda_quarterly(allData.total_ebitda_quarterly || []);
-      setTotal_ebitda_margin_quarterly(allData.total_ebitda_margin_quarterly || []);
-      setTotal_pretax_income_quarterly(allData.total_pretax_income_quarterly || []);
-      setTotal_tax_provision_quarterly(allData.total_tax_provision_quarterly || []);
-      setTotal_net_income_quarterly(allData.total_net_income_quarterly || []);
-      setTotal_net_profit_margin_quarterly(allData.total_net_profit_margin_quarterly || []);
-      setTotal_diluted_eps_quarterly(allData.total_diluted_eps_quarterly || []);
-      setTime_quarterly(allData.time_quarterly || []);
+      // setTotal_revenue_quarterly(allData.total_revenue_quarterly || []);
+      // setTotal_cogs_quarterly(allData.total_cogs_quarterly || []);
+      // setTotal_gross_profit_quarterly(allData.total_gross_profit_quarterly || []);
+      // setTotal_gross_margin_quarterly(allData.total_gross_margin_quarterly || []);
+      // setTotal_ebit_quarterly(allData.total_ebit_quarterly || []);
+      // setTotal_operating_expenses_quarterly(allData.total_operating_expenses_quarterly || []);
+      // setTotal_ebit_margin_quarterly(allData.total_ebit_margin_quarterly || []);
+      // setTotal_ebitda_quarterly(allData.total_ebitda_quarterly || []);
+      // setTotal_ebitda_margin_quarterly(allData.total_ebitda_margin_quarterly || []);
+      // setTotal_pretax_income_quarterly(allData.total_pretax_income_quarterly || []);
+      // setTotal_tax_provision_quarterly(allData.total_tax_provision_quarterly || []);
+      // setTotal_net_income_quarterly(allData.total_net_income_quarterly || []);
+      // setTotal_net_profit_margin_quarterly(allData.total_net_profit_margin_quarterly || []);
+      // setTotal_diluted_eps_quarterly(allData.total_diluted_eps_quarterly || []);
+      // setTime_quarterly(allData.time_quarterly || []);
       setTotal_working_capital_yearly(allData.total_working_capital_yearly || []);
       setTotal_current_ratio_yearly(allData.total_current_ratio_yearly || []);
       setTotal_quick_ratio_yearly(allData.total_quick_ratio_yearly || []);
@@ -166,21 +166,21 @@ function GetGraphData({ ticker, time }) {
       setTotal_total_assets_yearly(allData.total_total_assets_yearly || []);
       setTotal_total_liabilities_yearly(allData.total_total_liabilities_yearly || []);
       setTotal_shareholder_equity_yearly(allData.total_shareholder_equity_yearly || []);
-      setTotal_working_capital_quarterly(allData.total_working_capital_quarterly || []);
-      setTotal_current_ratio_quarterly(allData.total_current_ratio_quarterly || []);
-      setTotal_quick_ratio_quarterly(allData.total_quick_ratio_quarterly || []);
-      setTotal_cash_ratio_quarterly(allData.total_cash_ratio_quarterly || []);
-      setTotal_solvency_ratio_quarterly(allData.total_solvency_ratio_quarterly || []);
-      setTotal_de_ratio_quarterly(allData.total_de_ratio_quarterly || []);
-      setTotal_capitalization_ratio_quarterly(allData.total_capitalization_ratio_quarterly || []);
-      setTotal_equity_ratio_quarterly(allData.total_equity_ratio_quarterly || []);
-      setTotal_book_value_share_quarterly(allData.total_book_value_share_quarterly || []);
-      setTotal_tangible_book_value_share_quarterly(allData.total_tangible_book_value_share_quarterly || []);
-      setTotal_asset_turnover_ratio_quarterly(allData.total_asset_turnover_ratio_quarterly || []);
-      setTotal_inventory_turnover_quarterly(allData.total_inventory_turnover_quarterly || []);
-      setTotal_total_assets_quarterly(allData.total_total_assets_quarterly || []);
-      setTotal_total_liabilities_quarterly(allData.total_total_liabilities_quarterly || []);
-      setTotal_shareholder_equity_quarterly(allData.total_shareholder_equity_quarterly || []);
+      // setTotal_working_capital_quarterly(allData.total_working_capital_quarterly || []);
+      // setTotal_current_ratio_quarterly(allData.total_current_ratio_quarterly || []);
+      // setTotal_quick_ratio_quarterly(allData.total_quick_ratio_quarterly || []);
+      // setTotal_cash_ratio_quarterly(allData.total_cash_ratio_quarterly || []);
+      // setTotal_solvency_ratio_quarterly(allData.total_solvency_ratio_quarterly || []);
+      // setTotal_de_ratio_quarterly(allData.total_de_ratio_quarterly || []);
+      // setTotal_capitalization_ratio_quarterly(allData.total_capitalization_ratio_quarterly || []);
+      // setTotal_equity_ratio_quarterly(allData.total_equity_ratio_quarterly || []);
+      // setTotal_book_value_share_quarterly(allData.total_book_value_share_quarterly || []);
+      // setTotal_tangible_book_value_share_quarterly(allData.total_tangible_book_value_share_quarterly || []);
+      // setTotal_asset_turnover_ratio_quarterly(allData.total_asset_turnover_ratio_quarterly || []);
+      // setTotal_inventory_turnover_quarterly(allData.total_inventory_turnover_quarterly || []);
+      // setTotal_total_assets_quarterly(allData.total_total_assets_quarterly || []);
+      // setTotal_total_liabilities_quarterly(allData.total_total_liabilities_quarterly || []);
+      // setTotal_shareholder_equity_quarterly(allData.total_shareholder_equity_quarterly || []);
       setOperating_cash_flow_y(allData.operating_cash_flow_y || []);
       setFree_cash_flow_y(allData.free_cash_flow_y || []);
       setFcf_margin_y(allData.fcf_margin_y || []);
@@ -194,19 +194,19 @@ function GetGraphData({ ticker, time }) {
       setCash_return_equity_y(allData.cash_return_equity_y || []);
       setCash_convert_ratio_y(allData.cash_convert_ratio_y || []);
       setFcf_to_equity_y(allData.fcf_to_equity_y || []);
-      setOperating_cash_flow_q(allData.operating_cash_flow_q || []);
-      setFree_cash_flow_q(allData.free_cash_flow_q || []);
-      setFcf_margin_q(allData.fcf_margin_q || []);
-      setCashflow_margin_q(allData.cashflow_margin_q || []);
-      setCashflow_to_net_income_margin_q(allData.cashflow_to_net_income_margin_q || []);
-      setCapEx_ratio_q(allData.capEx_ratio_q || []);
-      setReinvestment_ratio_q(allData.reinvestment_ratio_q || []);
-      setDividend_coverage_q(allData.dividend_coverage_q || []);
-      setCash_interest_cov_q(allData.cash_interest_cov_q || []);
-      setCash_return_assets_q(allData.cash_return_assets_q || []);
-      setCash_return_equity_q(allData.cash_return_equity_q || []);
-      setCash_convert_ratio_q(allData.cash_convert_ratio_q || []);
-      setFcf_to_equity_q(allData.fcf_to_equity_q || []);
+      // setOperating_cash_flow_q(allData.operating_cash_flow_q || []);
+      // setFree_cash_flow_q(allData.free_cash_flow_q || []);
+      // setFcf_margin_q(allData.fcf_margin_q || []);
+      // setCashflow_margin_q(allData.cashflow_margin_q || []);
+      // setCashflow_to_net_income_margin_q(allData.cashflow_to_net_income_margin_q || []);
+      // setCapEx_ratio_q(allData.capEx_ratio_q || []);
+      // setReinvestment_ratio_q(allData.reinvestment_ratio_q || []);
+      // setDividend_coverage_q(allData.dividend_coverage_q || []);
+      // setCash_interest_cov_q(allData.cash_interest_cov_q || []);
+      // setCash_return_assets_q(allData.cash_return_assets_q || []);
+      // setCash_return_equity_q(allData.cash_return_equity_q || []);
+      // setCash_convert_ratio_q(allData.cash_convert_ratio_q || []);
+      // setFcf_to_equity_q(allData.fcf_to_equity_q || []);
     } else {
       // Fallback to empty arrays if time range not available
       setDates([]);
@@ -232,21 +232,21 @@ function GetGraphData({ ticker, time }) {
       setTotal_net_profit_margin_yearly([]);
       setTotal_diluted_eps_yearly([]);
       setTime_yearly([]);
-      setTotal_revenue_quarterly([]);
-      setTotal_cogs_quarterly([]);
-      setTotal_gross_profit_quarterly([]);
-      setTotal_gross_margin_quarterly([]);
-      setTotal_ebit_quarterly([]);
-      setTotal_operating_expenses_quarterly([]);
-      setTotal_ebit_margin_quarterly([]);
-      setTotal_ebitda_quarterly([]);
-      setTotal_ebitda_margin_quarterly([]);
-      setTotal_pretax_income_quarterly([]);
-      setTotal_tax_provision_quarterly([]);
-      setTotal_net_income_quarterly([]);
-      setTotal_net_profit_margin_quarterly([]);
-      setTotal_diluted_eps_quarterly([]);
-      setTime_quarterly([]);
+      // setTotal_revenue_quarterly([]);
+      // setTotal_cogs_quarterly([]);
+      // setTotal_gross_profit_quarterly([]);
+      // setTotal_gross_margin_quarterly([]);
+      // setTotal_ebit_quarterly([]);
+      // setTotal_operating_expenses_quarterly([]);
+      // setTotal_ebit_margin_quarterly([]);
+      // setTotal_ebitda_quarterly([]);
+      // setTotal_ebitda_margin_quarterly([]);
+      // setTotal_pretax_income_quarterly([]);
+      // setTotal_tax_provision_quarterly([]);
+      // setTotal_net_income_quarterly([]);
+      // setTotal_net_profit_margin_quarterly([]);
+      // setTotal_diluted_eps_quarterly([]);
+      // setTime_quarterly([]);
       setTotal_working_capital_yearly([]);
       setTotal_current_ratio_yearly([]);
       setTotal_quick_ratio_yearly([]);
@@ -262,21 +262,21 @@ function GetGraphData({ ticker, time }) {
       setTotal_total_assets_yearly([]);
       setTotal_total_liabilities_yearly([]);
       setTotal_shareholder_equity_yearly([]);
-      setTotal_working_capital_quarterly([]);
-      setTotal_current_ratio_quarterly([]);
-      setTotal_quick_ratio_quarterly([]);
-      setTotal_cash_ratio_quarterly([]);
-      setTotal_solvency_ratio_quarterly([]);
-      setTotal_de_ratio_quarterly([]);
-      setTotal_capitalization_ratio_quarterly([]);
-      setTotal_equity_ratio_quarterly([]);
-      setTotal_book_value_share_quarterly([]);
-      setTotal_tangible_book_value_share_quarterly([]);
-      setTotal_asset_turnover_ratio_quarterly([]);
-      setTotal_inventory_turnover_quarterly([]);
-      setTotal_total_assets_quarterly([]);
-      setTotal_total_liabilities_quarterly([]);
-      setTotal_shareholder_equity_quarterly([]);
+      // setTotal_working_capital_quarterly([]);
+      // setTotal_current_ratio_quarterly([]);
+      // setTotal_quick_ratio_quarterly([]);
+      // setTotal_cash_ratio_quarterly([]);
+      // setTotal_solvency_ratio_quarterly([]);
+      // setTotal_de_ratio_quarterly([]);
+      // setTotal_capitalization_ratio_quarterly([]);
+      // setTotal_equity_ratio_quarterly([]);
+      // setTotal_book_value_share_quarterly([]);
+      // setTotal_tangible_book_value_share_quarterly([]);
+      // setTotal_asset_turnover_ratio_quarterly([]);
+      // setTotal_inventory_turnover_quarterly([]);
+      // setTotal_total_assets_quarterly([]);
+      // setTotal_total_liabilities_quarterly([]);
+      // setTotal_shareholder_equity_quarterly([]);
       setOperating_cash_flow_y([]);
       setFree_cash_flow_y([]);
       setFcf_margin_y([]);
@@ -290,19 +290,19 @@ function GetGraphData({ ticker, time }) {
       setCash_return_equity_y([]);
       setCash_convert_ratio_y([]);
       setFcf_to_equity_y([]);
-      setOperating_cash_flow_q([]);
-      setFree_cash_flow_q([]);
-      setFcf_margin_q([]);
-      setCashflow_margin_q([]);
-      setCashflow_to_net_income_margin_q([]);
-      setCapEx_ratio_q([]);
-      setReinvestment_ratio_q([]);
-      setDividend_coverage_q([]);
-      setCash_interest_cov_q([]);
-      setCash_return_assets_q([]);
-      setCash_return_equity_q([]);
-      setCash_convert_ratio_q([]);
-      setFcf_to_equity_q([]);
+      // setOperating_cash_flow_q([]);
+      // setFree_cash_flow_q([]);
+      // setFcf_margin_q([]);
+      // setCashflow_margin_q([]);
+      // setCashflow_to_net_income_margin_q([]);
+      // setCapEx_ratio_q([]);
+      // setReinvestment_ratio_q([]);
+      // setDividend_coverage_q([]);
+      // setCash_interest_cov_q([]);
+      // setCash_return_assets_q([]);
+      // setCash_return_equity_q([]);
+      // setCash_convert_ratio_q([]);
+      // setFcf_to_equity_q([]);
     }
     
     setPrice(allData.price || null);
@@ -404,21 +404,21 @@ function GetGraphData({ ticker, time }) {
     total_net_profit_margin_yearly,
     total_diluted_eps_yearly,
     time_yearly,
-    total_revenue_quarterly,
-    total_cogs_quarterly,
-    total_gross_profit_quarterly,
-    total_gross_margin_quarterly,
-    total_ebit_quarterly,
-    total_operating_expenses_quarterly,
-    total_ebit_margin_quarterly,
-    total_ebitda_quarterly,
-    total_ebitda_margin_quarterly,
-    total_pretax_income_quarterly,
-    total_tax_provision_quarterly,
-    total_net_income_quarterly,
-    total_net_profit_margin_quarterly,
-    total_diluted_eps_quarterly,
-    time_quarterly,
+    // total_revenue_quarterly,
+    // total_cogs_quarterly,
+    // total_gross_profit_quarterly,
+    // total_gross_margin_quarterly,
+    // total_ebit_quarterly,
+    // total_operating_expenses_quarterly,
+    // total_ebit_margin_quarterly,
+    // total_ebitda_quarterly,
+    // total_ebitda_margin_quarterly,
+    // total_pretax_income_quarterly,
+    // total_tax_provision_quarterly,
+    // total_net_income_quarterly,
+    // total_net_profit_margin_quarterly,
+    // total_diluted_eps_quarterly,
+    // time_quarterly,
     total_working_capital_yearly,
     total_current_ratio_yearly,
     total_quick_ratio_yearly,
@@ -434,21 +434,21 @@ function GetGraphData({ ticker, time }) {
     total_total_assets_yearly,
     total_total_liabilities_yearly,
     total_shareholder_equity_yearly,
-    total_working_capital_quarterly,
-    total_current_ratio_quarterly,
-    total_quick_ratio_quarterly,
-    total_cash_ratio_quarterly,
-    total_solvency_ratio_quarterly,
-    total_de_ratio_quarterly,
-    total_capitalization_ratio_quarterly,
-    total_equity_ratio_quarterly,
-    total_book_value_share_quarterly,
-    total_tangible_book_value_share_quarterly,
-    total_asset_turnover_ratio_quarterly,
-    total_inventory_turnover_quarterly,
-    total_total_assets_quarterly,
-    total_total_liabilities_quarterly,
-    total_shareholder_equity_quarterly,
+    // total_working_capital_quarterly,
+    // total_current_ratio_quarterly,
+    // total_quick_ratio_quarterly,
+    // total_cash_ratio_quarterly,
+    // total_solvency_ratio_quarterly,
+    // total_de_ratio_quarterly,
+    // total_capitalization_ratio_quarterly,
+    // total_equity_ratio_quarterly,
+    // total_book_value_share_quarterly,
+    // total_tangible_book_value_share_quarterly,
+    // total_asset_turnover_ratio_quarterly,
+    // total_inventory_turnover_quarterly,
+    // total_total_assets_quarterly,
+    // total_total_liabilities_quarterly,
+    // total_shareholder_equity_quarterly,
     operating_cash_flow_y,
     free_cash_flow_y,
     fcf_margin_y,
@@ -462,19 +462,19 @@ function GetGraphData({ ticker, time }) {
     cash_return_equity_y,
     cash_convert_ratio_y,
     fcf_to_equity_y,
-    operating_cash_flow_q,
-    free_cash_flow_q,
-    fcf_margin_q,
-    cashflow_margin_q,
-    cashflow_to_net_income_margin_q,
-    capEx_ratio_q,
-    reinvestment_ratio_q,
-    dividend_coverage_q,
-    cash_interest_cov_q,
-    cash_return_assets_q,
-    cash_return_equity_q,
-    cash_convert_ratio_q,
-    fcf_to_equity_q,
+    // operating_cash_flow_q,
+    // free_cash_flow_q,
+    // fcf_margin_q,
+    // cashflow_margin_q,
+    // cashflow_to_net_income_margin_q,
+    // capEx_ratio_q,
+    // reinvestment_ratio_q,
+    // dividend_coverage_q,
+    // cash_interest_cov_q,
+    // cash_return_assets_q,
+    // cash_return_equity_q,
+    // cash_convert_ratio_q,
+    // fcf_to_equity_q,
   };
 }
 

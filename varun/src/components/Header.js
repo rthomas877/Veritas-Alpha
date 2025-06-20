@@ -41,7 +41,7 @@ function Header() {
                 <Link to="/learn">Learn</Link>
                 <Link to="/about">About</Link>
                 <Link to="/faq">FAQs</Link>
-                <Link to="/login">Login/Sign-up</Link>
+                <Link to="/login">Login</Link>
             </nav>
         </header>
     );
