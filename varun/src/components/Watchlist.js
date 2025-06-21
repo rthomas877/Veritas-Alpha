@@ -13,7 +13,7 @@ function Watchlist() {
 
     return (
         <div>
-            <HeaderSignedIn />
+            {localStorage.getItem('token') ? <HeaderSignedIn /> : <Header />}
             <WatchlistActual />
             <Footer />
         </div>

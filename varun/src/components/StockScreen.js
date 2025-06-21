@@ -1111,7 +1111,7 @@ const handleQuarterly = () => {
   
   return (
     <>
-      <Header />
+      {localStorage.getItem('token') ? <HeaderSignedIn /> : <Header />}
       <LightWeightSB />
       
       {showContent ? (

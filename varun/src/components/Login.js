@@ -3,6 +3,8 @@ import Footer from './Footer';
 import Header from './Header';
 import LoginActual from './LoginActual';
 import HeaderSignedIn from './HeaderSignedIn';
+import { useState } from 'react';
+
 
 
 function Login() {
@@ -13,7 +15,7 @@ function Login() {
 
     return (
         <div>
-            <Header />
+            {localStorage.getItem('token') ? <HeaderSignedIn /> : <Header />}
             <LoginActual />
             <Footer />
         </div>

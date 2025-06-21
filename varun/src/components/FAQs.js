@@ -14,7 +14,7 @@ function FAQs() {
 
   return (
     <> 
-      <Header />
+      {localStorage.getItem('token') ? <HeaderSignedIn /> : <Header />}
       <QuestionList />
       <Footer />
     </>

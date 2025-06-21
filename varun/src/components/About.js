@@ -16,7 +16,7 @@ function About() {
 
   return (
     <> 
-      <Header />
+      {localStorage.getItem('token') ? <HeaderSignedIn /> : <Header />}
       {/* <ChartDashboard />
       <Break /> */}
       <Bio />

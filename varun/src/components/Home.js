@@ -11,11 +11,12 @@ function Home() {
   
   useEffect(() => {
     document.title = "Veritas Alpha";
+    localStorage.getItem('token');
   }, []);
   
   return (
     <div className='home'> 
-      <Header /> {/* Ensure Header is used properly */}
+      {localStorage.getItem('token') ? <HeaderSignedIn /> : <Header />} {/* Ensure Header is used properly */}
       {/* <HeaderSignedIn /> */}
       <ChartDashboard />
       <Break />

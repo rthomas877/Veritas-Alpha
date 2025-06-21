@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { jwtDecode } from 'jwt-decode';
+
 
 
 function HeaderSignedIn() {
 
     const [menuOpen, setMenuOpen] = useState(false); // menuOpen is not used by default
+    const [userName, setUserName] = useState("");
+    const [userFirstName, setUserFirstName] = useState('');
+    const [userEmail, setUserEmail] = useState(null);
+
+
     
     const closeMenu = (event) => {
         if (!event.target.closest(".nav") && !event.target.closest(".menu-icon")) {
@@ -17,6 +24,19 @@ function HeaderSignedIn() {
           document.addEventListener("click", closeMenu);
         } else {
           document.removeEventListener("click", closeMenu);
+        }
+        const token = localStorage.getItem('token');
+        if (token) {
+            try {
+                const decoded = jwtDecode(token);
+                setUserEmail(decoded.sub || decoded.email); // sub = subject = email in your JWT
+                setUserName(decoded.name);
+                setUserFirstName(decoded.name.split(' ')[0]);
+                console.log('Decoded token:', decoded);
+            } catch (err) {
+                console.error('Invalid token', err);
+                localStorage.removeItem('token'); // optional: cleanup
+            }
         }
         return () => document.removeEventListener("click", closeMenu);
     }, [menuOpen]);
@@ -41,7 +61,7 @@ function HeaderSignedIn() {
                 <Link to="/learn">Learn</Link>
                 <Link to="/about">About</Link>
                 <Link to="/faq">FAQs</Link>
-                <Link to="/account">ACCNAME</Link>
+                <Link to="/account">{userFirstName}</Link>
             </nav>
         </header>
     );

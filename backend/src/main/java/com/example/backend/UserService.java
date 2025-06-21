@@ -35,7 +35,7 @@ public class UserService {
     public ResponseEntity<?> login(LoginDTO dto) {
         Optional<User> user = repo.findByEmail(dto.email);
         if (user.isPresent() && encoder.matches(dto.password, user.get().getPassword())) { // if user entered correct password for this email
-            String token = jwt.generateToken(user.get().getEmail());
+            String token = jwt.generateToken(user.get().getEmail(), user.get().getName());
             return ResponseEntity.ok(Map.of("token", token));
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login");

@@ -11,7 +11,8 @@ import Login from './components/Login';
 import Account from './components/Account';
 import CreateACC from './components/CreateACC';
 
-function App() {    
+
+function App() { 
   return (
     <Router>
       <Routes>

@@ -35,40 +35,40 @@ function CreateACCActual() {
 
     const navigate = useNavigate();
     
-      const handleAddUser = (e) => {
-        if (goodName === true && goodEmail === true && goodPassword === true) {
-            fetch('http://localhost:8080/api/users/register', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                name: queryName,
-                email: queryEmail,
-                password: queryPassword
-                })
+    const handleAddUser = (e) => {
+    if (goodName === true && goodEmail === true && goodPassword === true) {
+        fetch('http://localhost:8080/api/users/register', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+            name: queryName,
+            email: queryEmail,
+            password: queryPassword
             })
-            .then(response => response.json())
-            .then(data => console.log('Response:', data))
-            .catch(error => console.error('Error:', error));
-            setResponse(response);
+        })
+        .then(response => response.json())
+        .then(data => console.log('Response:', data))
+        .catch(error => console.error('Error:', error));
+        setResponse(response);
         }
-      };
+    };
 
-          // UseEffect for name
-        useEffect(() => {
-            setGoodName(nameRequirements.every(req => req.valid));
-        }, [queryName]);
+    // UseEffect for name
+    useEffect(() => {
+        setGoodName(nameRequirements.every(req => req.valid));
+    }, [queryName, nameRequirements]);
 
-        // UseEffect for email
-        useEffect(() => {
-            setGoodEmail(emailRequirement);
-        }, [queryEmail]);
+    // UseEffect for email
+    useEffect(() => {
+        setGoodEmail(emailRequirement);
+    }, [queryEmail, emailRequirement]);
 
-        // UseEffect for password
-        useEffect(() => {
-            setGoodPassword(passwordRequirement);
-        }, [queryPassword]);
+    // UseEffect for password
+    useEffect(() => {
+        setGoodPassword(passwordRequirement);
+    }, [queryPassword, passwordRequirement]);
 
 
     return (

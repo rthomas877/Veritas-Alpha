@@ -14,7 +14,7 @@ function Learn() {
 
   return (
     <> 
-      <Header />
+      {localStorage.getItem('token') ? <HeaderSignedIn /> : <Header />}
       <LearnContent />
       <Footer />
     </>
